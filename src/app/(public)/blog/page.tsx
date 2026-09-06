@@ -23,15 +23,15 @@ export default async function PublicBlogPage() {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <Badge
             variant="outline"
-            className="bg-gold-50 text-gold border-gold/20 text-xs uppercase font-bold tracking-wider px-3 py-1"
+            className="bg-gold/15 dark:bg-gold/20 text-gold border-gold/30 text-xs uppercase font-bold tracking-wider px-3 py-1"
           >
             Insights &amp; Knowledge Base
           </Badge>
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-dark tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-foreground tracking-tight">
             Financial &amp; Advisory Perspectives
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-            Stay informed with the latest updates on corporate tax, accounting standards, VAT regulations, and business advisory in Dubai and Sri Lanka.
+            Stay informed with the latest updates on corporate tax, accounting standards, IRD RAMIS regulations, and corporate advisory in Sri Lanka.
           </p>
         </div>
 
@@ -71,7 +71,7 @@ export default async function PublicBlogPage() {
                         {post.published_at && (
                           <span className="flex items-center gap-1">
                             <Calendar className="h-3 w-3 text-gold" />
-                            {new Date(post.published_at).toLocaleDateString("en-AE", {
+                            {new Date(post.published_at).toLocaleDateString("en-LK", {
                               day: "numeric",
                               month: "short",
                               year: "numeric",

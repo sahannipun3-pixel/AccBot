@@ -6,17 +6,17 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // ─── Number & Currency Formatters ───
-export function formatCurrency(amount: number, currency = "AED"): string {
-  return new Intl.NumberFormat("en-AE", {
+export function formatCurrency(amount: number, currency = "LKR"): string {
+  return new Intl.NumberFormat("en-LK", {
     style: "currency",
     currency,
-    minimumFractionDigits: 0,
+    minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(amount)
 }
 
 export function formatNumber(value: number): string {
-  return new Intl.NumberFormat("en-AE").format(value)
+  return new Intl.NumberFormat("en-LK").format(value)
 }
 
 // ─── Framer Motion Animation Variants ───

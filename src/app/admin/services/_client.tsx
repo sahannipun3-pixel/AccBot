@@ -310,7 +310,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-dark">
+          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-foreground">
             Services Management &amp; CMS
           </h1>
           <p className="text-muted-foreground text-xs sm:text-sm mt-1">
@@ -381,7 +381,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
           {filteredServices.length === 0 ? (
             <div className="py-20 text-center px-4">
               <Briefcase className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="font-bold text-sm text-dark">No services configured yet</p>
+              <p className="font-bold text-sm text-foreground">No services configured yet</p>
               <p className="text-xs text-muted-foreground max-w-xs mx-auto mt-1">
                 Click &quot;New Service&quot; above to create and publish accounting offerings.
               </p>
@@ -390,12 +390,12 @@ export default function AdminServicesClient({ initialServices }: Props) {
             <Table>
               <TableHeader className="bg-surface/50">
                 <TableRow>
-                  <TableHead className="font-semibold text-dark font-heading">Service</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Slug / URL</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Summary</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Status</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Order</TableHead>
-                  <TableHead className="text-right font-semibold text-dark font-heading">Actions</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Service</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Slug / URL</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Summary</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Status</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Order</TableHead>
+                  <TableHead className="text-right font-semibold text-foreground font-heading">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -403,11 +403,11 @@ export default function AdminServicesClient({ initialServices }: Props) {
                   <TableRow key={service.id} className="hover:bg-surface/20 transition-colors">
                     <TableCell className="py-4">
                       <div className="flex items-center gap-3">
-                        <div className="h-9 w-9 rounded-xl bg-gold-50 border border-gold/20 text-gold flex items-center justify-center font-bold shrink-0">
+                        <div className="h-9 w-9 rounded-xl bg-gold/15 border border-gold/30 text-gold flex items-center justify-center font-bold shrink-0">
                           <Briefcase className="h-4 w-4" />
                         </div>
                         <div className="flex flex-col">
-                          <span className="font-bold text-sm text-dark">{service.title}</span>
+                          <span className="font-bold text-sm text-foreground">{service.title}</span>
                           <span className="text-[11px] text-muted-foreground">
                             {service.benefits?.length || 0} benefits • {service.process_steps?.length || 0} steps • {service.faqs?.length || 0} FAQs
                           </span>
@@ -513,7 +513,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-xs font-semibold text-dark-800">URL Slug *</Label>
+                <Label className="text-xs font-semibold text-foreground">URL Slug *</Label>
                 <Input
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}
@@ -526,11 +526,11 @@ export default function AdminServicesClient({ initialServices }: Props) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label className="text-xs font-semibold text-dark-800">Icon Identifier</Label>
+                <Label className="text-xs font-semibold text-foreground">Icon Identifier</Label>
                 <select
                   value={icon}
                   onChange={(e) => setIcon(e.target.value)}
-                  className="w-full h-10 rounded-xl border border-border/80 bg-surface/50 px-3 text-xs text-dark focus:outline-none focus:ring-2 focus:ring-gold/30"
+                  className="w-full h-10 rounded-xl border border-border/80 bg-surface/50 px-3 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-gold/30"
                 >
                   {AVAILABLE_ICONS.map((i) => (
                     <option key={i} value={i}>
@@ -541,7 +541,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-xs font-semibold text-dark-800">Sort Priority Order</Label>
+                <Label className="text-xs font-semibold text-foreground">Sort Priority Order</Label>
                 <Input
                   type="number"
                   value={sortOrder}
@@ -553,7 +553,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
 
             {/* Short Description */}
             <div className="space-y-1.5">
-              <Label className="text-xs font-semibold text-dark-800">
+              <Label className="text-xs font-semibold text-foreground">
                 Short Summary * <span className="text-muted-foreground font-normal">(displayed on cards)</span>
               </Label>
               <Textarea
@@ -568,7 +568,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
 
             {/* Full Overview */}
             <div className="space-y-1.5">
-              <Label className="text-xs font-semibold text-dark-800">
+              <Label className="text-xs font-semibold text-foreground">
                 Detailed Overview * <span className="text-muted-foreground font-normal">(displayed on detail page)</span>
               </Label>
               <Textarea
@@ -584,7 +584,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
             {/* ── Key Benefits List Editor ── */}
             <div className="space-y-3 pt-2 border-t border-border/60">
               <div className="flex items-center justify-between">
-                <Label className="text-xs font-bold text-dark flex items-center gap-1.5">
+                <Label className="text-xs font-bold text-foreground flex items-center gap-1.5">
                   <ListChecks className="h-4 w-4 text-gold" />
                   <span>Key Benefits ({benefits.length})</span>
                 </Label>
@@ -617,7 +617,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
                     >
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />
-                        <span className="text-dark-800">{b}</span>
+                        <span className="text-foreground">{b}</span>
                       </div>
                       <Button
                         type="button"
@@ -637,7 +637,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
             {/* ── Process Steps Editor ── */}
             <div className="space-y-3 pt-2 border-t border-border/60">
               <div className="flex items-center justify-between">
-                <Label className="text-xs font-bold text-dark flex items-center gap-1.5">
+                <Label className="text-xs font-bold text-foreground flex items-center gap-1.5">
                   <Layers className="h-4 w-4 text-gold" />
                   <span>Execution Process Steps ({processSteps.length})</span>
                 </Label>
@@ -745,7 +745,7 @@ export default function AdminServicesClient({ initialServices }: Props) {
                 checked={isActive}
                 onCheckedChange={(checked) => setIsActive(!!checked)}
               />
-              <Label htmlFor="is_active" className="text-xs font-semibold text-dark cursor-pointer">
+              <Label htmlFor="is_active" className="text-xs font-semibold text-foreground cursor-pointer">
                 Publish service immediately (visible on public services pages)
               </Label>
             </div>

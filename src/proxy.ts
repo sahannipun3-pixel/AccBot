@@ -42,7 +42,7 @@ export async function proxy(request: NextRequest) {
     (path) => url.pathname.startsWith(path)
   );
 
-  const isProtectedRoute = ["/profile", "/admin", "/expense-tracker", "/accounts-web"].some(
+  const isProtectedRoute = ["/profile", "/portal", "/admin", "/expense-tracker", "/accounts-web"].some(
     (path) => url.pathname.startsWith(path)
   );
 
@@ -94,8 +94,8 @@ export async function proxy(request: NextRequest) {
   // ── Guards ───────────────────────────────────────────────────────────────────
 
   if (isAuthenticated && isAuthRoute) {
-    // Logged-in users should not see login/signup pages
-    url.pathname = "/profile";
+    // Logged-in users should not see login/signup pages — redirect to their proper dashboard directly
+    url.pathname = (userRole === "admin" || userRole === "super_admin") ? "/admin" : "/portal/dashboard";
     return NextResponse.redirect(url);
   }
 
@@ -109,7 +109,7 @@ export async function proxy(request: NextRequest) {
   // ── Admin Role Guard ─────────────────────────────────────────────────────────
   if (isAuthenticated && isAdminRoute && userRole !== "admin" && userRole !== "super_admin") {
     // Authenticated but non-admin users cannot access admin routes
-    url.pathname = "/profile";
+    url.pathname = "/portal/dashboard";
     url.searchParams.delete("next");
     return NextResponse.redirect(url);
   }

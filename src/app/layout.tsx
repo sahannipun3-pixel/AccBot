@@ -18,39 +18,41 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Accbot | Premium Accounting, Bookkeeping & Advisory Services",
+  title: "AccBot | Accounting, Bookkeeping & Tax Advisory Services in Sri Lanka",
   description:
-    "Accbot provides expert accounting, tax advisory, company registration, and audit services. Designed by Nexora Software Solutions for clients seeking trusted advisory.",
-  metadataBase: new URL("https://accbot.com"), // Placeholder domain
+    "AccBot provides expert chartered accounting, IRD tax advisory, company registration, and audit services for modern businesses across Sri Lanka.",
+  metadataBase: new URL("https://accbot.lk"),
   openGraph: {
-    title: "Accbot | Smart Accounting & Advisory",
-    description: "Premium accounting, bookkeeping, and advisory services built on trust and precision.",
-    url: "https://accbot.com",
-    siteName: "Accbot",
-    locale: "en_US",
+    title: "AccBot | Smart Accounting & Advisory — Sri Lanka",
+    description: "Premium accounting, bookkeeping, and tax advisory services built on trust, precision, and compliance.",
+    url: "https://accbot.lk",
+    siteName: "AccBot",
+    locale: "en_LK",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Accbot | Smart Accounting & Advisory",
-    description: "Premium accounting, bookkeeping, and advisory services built on trust and precision.",
+    title: "AccBot | Smart Accounting & Advisory — Sri Lanka",
+    description: "Premium accounting, bookkeeping, and tax advisory services built on trust, precision, and compliance.",
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
-  name: "AccBot Accounting & Advisory",
-  description: "AccBot provides expert accounting, tax advisory, company registration, and audit services.",
+  name: "AccBot Accounting & Advisory Sri Lanka",
+  description: "AccBot provides expert chartered accounting, IRD tax advisory, company registration, and audit assurance.",
   url: "https://accbot.lk",
   telephone: "+94 11 234 5678",
   email: "info@accbot.lk",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Level 12, West Tower, World Trade Center, Echelon Square",
     addressLocality: "Colombo",
+    postalCode: "00100",
     addressCountry: "LK",
   },
-  priceRange: "$$",
+  priceRange: "LKR",
 };
 
 export default function RootLayout({
@@ -71,8 +73,8 @@ export default function RootLayout({
         />
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <TooltipProvider>

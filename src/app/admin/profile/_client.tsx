@@ -153,7 +153,7 @@ export default function AdminProfileClient({ user: initialUser }: Props) {
             <div className="relative group">
               <Avatar className="h-20 w-20 border-2 border-gold/30 shadow-md">
                 {avatarUrl && <AvatarImage src={avatarUrl} alt={user.full_name} />}
-                <AvatarFallback className="bg-gold-50 text-gold text-xl font-bold">
+                <AvatarFallback className="bg-gold/15 text-gold text-xl font-bold">
                   {user.full_name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
@@ -182,14 +182,14 @@ export default function AdminProfileClient({ user: initialUser }: Props) {
             <div className="space-y-1">
               <div className="flex items-center gap-2">
                 <h2 className="text-xl font-extrabold font-heading text-foreground">{user.full_name}</h2>
-                <Badge className="bg-gold-50 text-gold border-gold/20 text-[10px] font-bold">
+                <Badge className="bg-gold/15 text-gold border-gold/30 text-[10px] font-bold">
                   {user.role === "super_admin" ? "SUPER ADMIN" : "ADMIN"}
                 </Badge>
               </div>
               <p className="text-xs text-muted-foreground font-mono">{user.email}</p>
               <p className="text-[11px] text-muted-foreground flex items-center gap-1.5 pt-0.5">
                 <Calendar className="h-3.5 w-3.5 text-gold" />
-                Registered on {new Date(user.created_at).toLocaleDateString("en-AE", { day: "numeric", month: "long", year: "numeric" })}
+                Registered on {new Date(user.created_at).toLocaleDateString("en-LK", { day: "numeric", month: "long", year: "numeric" })}
               </p>
             </div>
           </div>
@@ -218,7 +218,7 @@ export default function AdminProfileClient({ user: initialUser }: Props) {
               <Input
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="+971 XX XXX XXXX"
+                placeholder="+94 7X XXX XXXX"
                 className="bg-surface/50 border-border/80 rounded-xl text-xs"
               />
             </div>

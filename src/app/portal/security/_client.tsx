@@ -43,7 +43,7 @@ export default function SecurityClient({ user }: Props) {
     }
   };
 
-  const lastUpdated = new Date(user.updated_at).toLocaleDateString("en-AE", {
+  const lastUpdated = new Date(user.updated_at).toLocaleDateString("en-LK", {
     day: "numeric",
     month: "long",
     year: "numeric",

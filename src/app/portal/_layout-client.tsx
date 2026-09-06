@@ -165,7 +165,7 @@ export default function PortalLayoutClient({ children, user }: Props) {
               <div className="flex flex-col min-w-0">
                 <Badge
                   variant="outline"
-                  className="bg-gold-50 text-gold border-gold/20 text-[9px] uppercase font-bold tracking-widest px-1.5 py-0.5 w-fit"
+                  className="bg-gold/15 text-gold border-gold/30 text-[9px] uppercase font-bold tracking-widest px-1.5 py-0.5 w-fit"
                 >
                   Client Portal
                 </Badge>
@@ -236,7 +236,7 @@ export default function PortalLayoutClient({ children, user }: Props) {
             <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-card border border-border/70">
               <Avatar className="h-8 w-8 border border-gold/30 shrink-0">
                 {user.avatar_url && <AvatarImage src={user.avatar_url} alt={user.full_name} />}
-                <AvatarFallback className="bg-gold-50 text-gold text-xs font-bold">
+                <AvatarFallback className="bg-gold/15 text-gold text-xs font-bold">
                   {initials}
                 </AvatarFallback>
               </Avatar>
@@ -291,7 +291,7 @@ export default function PortalLayoutClient({ children, user }: Props) {
               <Logo showText={true} />
               <Badge
                 variant="outline"
-                className="bg-gold-50 text-gold border-gold/20 text-[9px] uppercase font-bold tracking-widest px-1.5 py-0.5"
+                className="bg-gold/15 text-gold border-gold/30 text-[9px] uppercase font-bold tracking-widest px-1.5 py-0.5"
               >
                 Client Portal
               </Badge>
@@ -346,7 +346,7 @@ export default function PortalLayoutClient({ children, user }: Props) {
           <div className="flex items-center gap-3 p-3 rounded-xl bg-surface/60 border border-border/70">
             <Avatar className="h-9 w-9 border border-gold/30 shrink-0">
               {user.avatar_url && <AvatarImage src={user.avatar_url} alt={user.full_name} />}
-              <AvatarFallback className="bg-gold-50 text-gold text-sm font-bold">
+              <AvatarFallback className="bg-gold/15 text-gold text-sm font-bold">
                 {initials}
               </AvatarFallback>
             </Avatar>
@@ -417,7 +417,7 @@ export default function PortalLayoutClient({ children, user }: Props) {
                   >
                     <Avatar className="h-8 w-8 border border-gold/30">
                       {user.avatar_url && <AvatarImage src={user.avatar_url} alt={user.full_name} />}
-                      <AvatarFallback className="bg-gold-50 text-gold font-bold text-xs">
+                      <AvatarFallback className="bg-gold/15 text-gold font-bold text-xs">
                         {initials}
                       </AvatarFallback>
                     </Avatar>

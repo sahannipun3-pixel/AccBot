@@ -267,7 +267,7 @@ export default function AdminUsersClient({ initialUsers, total }: Props) {
                           user.role === "super_admin"
                             ? "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20"
                             : user.role === "admin"
-                            ? "bg-gold-50 text-gold border-gold/20"
+                            ? "bg-gold/15 text-gold border-gold/30"
                             : "bg-surface text-foreground/80 border-border"
                         }
                         variant="outline"
@@ -295,7 +295,7 @@ export default function AdminUsersClient({ initialUsers, total }: Props) {
                       {user.phone ?? "—"}
                     </TableCell>
                     <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
-                      {new Date(user.created_at).toLocaleDateString("en-AE", {
+                      {new Date(user.created_at).toLocaleDateString("en-LK", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
@@ -401,7 +401,7 @@ export default function AdminUsersClient({ initialUsers, total }: Props) {
                 <div className="flex items-center gap-2 text-foreground">
                   <Calendar className="h-4 w-4 text-muted-foreground shrink-0" />
                   <span className="font-bold">Registered On:</span>
-                  <span>{new Date(viewingUser.created_at).toLocaleString("en-AE")}</span>
+                  <span>{new Date(viewingUser.created_at).toLocaleString("en-LK")}</span>
                 </div>
               </div>
 
@@ -443,7 +443,7 @@ export default function AdminUsersClient({ initialUsers, total }: Props) {
               <Input
                 value={editPhone}
                 onChange={(e) => setEditPhone(e.target.value)}
-                placeholder="+971 XX XXX XXXX"
+                placeholder="+94 7X XXX XXXX"
                 className="bg-surface/50 border-border/80 rounded-xl text-xs"
               />
             </div>

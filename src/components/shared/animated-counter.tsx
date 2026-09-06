@@ -45,7 +45,7 @@ export function AnimatedCounter({
   }, [value, duration, isInView]);
 
   return (
-    <span ref={ref} className={cn("font-bold tracking-tight text-dark", className)}>
+    <span ref={ref} className={cn("font-bold tracking-tight text-foreground", className)}>
       {count}
       {suffix}
     </span>

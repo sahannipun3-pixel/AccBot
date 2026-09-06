@@ -28,7 +28,7 @@ export function TeamClient({ team }: Props) {
         <SectionHeader
           tag="Our Experts"
           title="Meet Our Financial Advisory Team"
-          description="Experienced chartered accountants, FTA-tax agents, and corporate legal specialists ready to support your business expansion in Dubai and the wider UAE."
+          description="Experienced chartered accountants, IRD-accredited tax consultants, and corporate secretarial specialists ready to support your business expansion across Sri Lanka and the region."
         />
 
         {team.length > 0 ? (
@@ -47,7 +47,7 @@ export function TeamClient({ team }: Props) {
                       {member.avatar_url && (
                         <AvatarImage src={member.avatar_url} alt={member.name} className="object-cover" />
                       )}
-                      <AvatarFallback className="bg-gold-50 text-gold font-bold">
+                      <AvatarFallback className="bg-gold/15 text-gold font-bold">
                         <User className="h-10 w-10" />
                       </AvatarFallback>
                     </Avatar>

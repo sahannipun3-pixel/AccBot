@@ -1,6 +1,7 @@
 "use server";
 
 import bcrypt from "bcryptjs";
+import { cache } from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import crypto from "crypto";
@@ -288,7 +289,7 @@ export async function resetPassword(data: ResetPasswordFormData & { token: strin
 
 // ─── Get Current Authenticated User ──────────────────────────────────────────
 
-export async function getCurrentUser(): Promise<DbUser | null> {
+export const getCurrentUser = cache(async (): Promise<DbUser | null> => {
   try {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get(ACCESS_TOKEN_COOKIE)?.value;
@@ -325,7 +326,7 @@ export async function getCurrentUser(): Promise<DbUser | null> {
   } catch {
     return null;
   }
-}
+});
 
 // ─── Sign In with Google ───────────────────────────────────────────────────────
 

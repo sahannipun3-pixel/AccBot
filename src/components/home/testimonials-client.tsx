@@ -63,7 +63,7 @@ export function TestimonialsClient({ testimonials }: Props) {
                         {testimonial.avatar_url && (
                           <AvatarImage src={testimonial.avatar_url} alt={testimonial.name} />
                         )}
-                        <AvatarFallback className="bg-gold-50 text-gold font-bold text-sm">
+                        <AvatarFallback className="bg-gold/15 text-gold font-bold text-sm border border-gold/30">
                           {testimonial.name.split(" ").map((n) => n[0]).join("")}
                         </AvatarFallback>
                       </Avatar>

@@ -139,7 +139,7 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-dark">
+          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-foreground">
             Contact Enquiries
           </h1>
           <p className="text-muted-foreground text-xs sm:text-sm mt-1">
@@ -208,7 +208,7 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
           {filteredMessages.length === 0 ? (
             <div className="py-20 text-center px-4">
               <MessageSquare className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="font-bold text-sm text-dark">No contact enquiries yet</p>
+              <p className="font-bold text-sm text-foreground">No contact enquiries yet</p>
               <p className="text-xs text-muted-foreground max-w-xs mx-auto mt-1">
                 {search || filterTab !== "all"
                   ? "No messages match your search filter."
@@ -219,12 +219,12 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
             <Table>
               <TableHeader className="bg-surface/50">
                 <TableRow>
-                  <TableHead className="font-semibold text-dark font-heading">Sender Details</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Inquiry Subject</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Message Preview</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Status</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Received</TableHead>
-                  <TableHead className="text-right font-semibold text-dark font-heading">Actions</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Sender Details</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Inquiry Subject</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Message Preview</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Status</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Received</TableHead>
+                  <TableHead className="text-right font-semibold text-foreground font-heading">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -232,13 +232,13 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
                   <TableRow
                     key={msg.id}
                     className={`hover:bg-surface/20 transition-colors cursor-pointer ${
-                      !msg.is_read ? "bg-gold-50/25 font-semibold" : ""
+                      !msg.is_read ? "bg-gold/5 dark:bg-gold/10 font-semibold" : ""
                     }`}
                     onClick={() => openMessageModal(msg)}
                   >
                     <TableCell className="py-4" onClick={(e) => e.stopPropagation()}>
                       <div className="flex flex-col text-left">
-                        <span className={`text-sm text-dark ${!msg.is_read ? "font-extrabold" : "font-semibold"}`}>
+                        <span className={`text-sm text-foreground ${!msg.is_read ? "font-extrabold" : "font-semibold"}`}>
                           {msg.name}
                         </span>
                         <span className="text-xs text-muted-foreground font-mono">{msg.email}</span>
@@ -248,7 +248,7 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
                       </div>
                     </TableCell>
 
-                    <TableCell className="text-xs text-dark-800 font-bold max-w-xs">
+                    <TableCell className="text-xs text-foreground font-bold max-w-xs">
                       {msg.subject}
                     </TableCell>
 
@@ -260,7 +260,7 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
                       <Badge
                         className={
                           !msg.is_read
-                            ? "bg-gold-50 text-gold border-gold/20"
+                            ? "bg-gold/15 text-gold border-gold/30"
                             : "bg-surface text-muted-foreground border-border"
                         }
                         variant="outline"
@@ -270,7 +270,7 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
                     </TableCell>
 
                     <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
-                      {new Date(msg.created_at).toLocaleDateString("en-AE", {
+                      {new Date(msg.created_at).toLocaleDateString("en-LK", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
@@ -339,7 +339,7 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
                   className={
                     selectedMessage.is_read
                       ? "bg-surface text-muted-foreground border-border"
-                      : "bg-gold-50 text-gold border-gold/20"
+                      : "bg-gold/15 text-gold border-gold/30"
                   }
                 >
                   {selectedMessage.is_read ? "READ" : "UNREAD"}
@@ -385,7 +385,7 @@ export default function AdminMessagesClient({ initialMessages, total }: Props) {
                   )}
                   <span className="flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
-                    {new Date(selectedMessage.created_at).toLocaleString("en-AE")}
+                    {new Date(selectedMessage.created_at).toLocaleString("en-LK")}
                   </span>
                 </div>
               </div>

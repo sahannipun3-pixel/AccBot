@@ -76,7 +76,7 @@ export default function DashboardClient({ user, recentActivity, servicesCount }:
     .slice(0, 2)
     .toUpperCase();
 
-  const memberSince = new Date(user.created_at).toLocaleDateString("en-AE", {
+  const memberSince = new Date(user.created_at).toLocaleDateString("en-LK", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -103,7 +103,7 @@ export default function DashboardClient({ user, recentActivity, servicesCount }:
         <div className="flex items-center gap-3 shrink-0">
           <Avatar className="h-14 w-14 border-2 border-gold/30 shadow-md">
             {user.avatar_url && <AvatarImage src={user.avatar_url} alt={user.full_name} />}
-            <AvatarFallback className="bg-gold-50 text-gold text-lg font-bold">
+            <AvatarFallback className="bg-gold/15 text-gold text-lg font-bold">
               {initials}
             </AvatarFallback>
           </Avatar>
@@ -271,7 +271,7 @@ export default function DashboardClient({ user, recentActivity, servicesCount }:
                         {formatAction(log.action)}
                       </p>
                       <p className="text-[10px] text-muted-foreground">
-                        {new Date(log.created_at).toLocaleString("en-AE", {
+                        {new Date(log.created_at).toLocaleString("en-LK", {
                           day: "numeric",
                           month: "short",
                           hour: "2-digit",

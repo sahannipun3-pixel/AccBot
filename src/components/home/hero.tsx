@@ -8,7 +8,7 @@ import { slideUp } from "@/lib/utils";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-dark text-white py-20">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background text-foreground dark:bg-dark dark:text-white py-20">
       {/* Dynamic Background */}
       <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
       <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
@@ -18,8 +18,8 @@ export function Hero() {
       <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-gold/15 rounded-full blur-3xl translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
       {/* Subtle lines or geometric shapes */}
-      <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-silver/10 to-transparent pointer-events-none" />
-      <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-silver/10 to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-gold/10 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-gold/10 to-transparent pointer-events-none" />
 
       <div className="container-custom relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Hero Left Content */}
@@ -32,7 +32,7 @@ export function Hero() {
           >
             <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
             <span className="text-xs font-bold text-gold tracking-widest uppercase">
-              Premier Financial Services
+              Premier Financial Services • Sri Lanka
             </span>
           </motion.div>
 
@@ -40,7 +40,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             variants={slideUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-heading text-white leading-tight tracking-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-heading text-foreground dark:text-white leading-tight tracking-tight mb-6"
           >
             Elite Financial Architecture <br />
             <span className="text-gradient-gold">For Modern Enterprises.</span>
@@ -53,9 +53,9 @@ export function Hero() {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.6 } }
             }}
-            className="text-silver/95 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-2xl font-light"
+            className="text-muted-foreground dark:text-silver/95 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-2xl font-normal"
           >
-            We provide premium accounting, bookkeeping, taxation, and business advisory services across the UAE. Securing compliance, optimizing profitability, and enabling strategic growth.
+            We provide premium accounting, bookkeeping, taxation, and corporate advisory services across Sri Lanka. Securing IRD compliance, optimizing profitability, and enabling strategic growth.
           </motion.p>
 
           <motion.div
@@ -89,19 +89,19 @@ export function Hero() {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { delay: 0.5, duration: 0.8 } }
             }}
-            className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-12 pt-8 border-t border-silver/10 w-full"
+            className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-12 pt-8 border-t border-border dark:border-silver/10 w-full"
           >
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-gold" />
-              <span className="text-xs text-silver/90">FTA Compliant Tax Agents</span>
+              <span className="text-xs text-muted-foreground dark:text-silver/90 font-medium">CA Sri Lanka & IRD Compliant</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-gold" />
-              <span className="text-xs text-silver/90">Premium Client Relations</span>
+              <span className="text-xs text-muted-foreground dark:text-silver/90 font-medium">Premium Client Advisory</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-gold" />
-              <span className="text-xs text-silver/90">Zero Upfront Commitments</span>
+              <span className="text-xs text-muted-foreground dark:text-silver/90 font-medium">Zero Upfront Commitments</span>
             </div>
           </motion.div>
         </div>
@@ -114,14 +114,14 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative w-full aspect-square max-w-md mx-auto"
           >
-            {/* Elegant luxury visual elements representing balance, charts, structure */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-gold/15 via-transparent to-silver/5 rounded-3xl border border-gold/30 shadow-2xl overflow-hidden glass-dark">
+            {/* Elegant visual elements representing balance, charts, structure */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-gold/10 via-card/90 to-surface rounded-3xl border border-border dark:border-gold/30 shadow-2xl overflow-hidden backdrop-blur-md">
               <div className="absolute inset-0 bg-grid opacity-10" />
               <div className="p-8 h-full flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                   <div className="space-y-1">
                     <span className="text-xs font-bold text-gold tracking-widest uppercase">Enterprise Health</span>
-                    <h3 className="text-xl font-bold font-heading text-white">Financial Security</h3>
+                    <h3 className="text-xl font-bold font-heading text-foreground">Financial Security</h3>
                   </div>
                   <div className="h-8 w-8 rounded-lg bg-gold/10 border border-gold/30 flex items-center justify-center">
                     <span className="text-xs text-gold font-bold">A+</span>
@@ -130,7 +130,7 @@ export function Hero() {
 
                 {/* Simulated Chart/Visual */}
                 <div className="space-y-4 my-8">
-                  <div className="h-2 w-full bg-silver/10 rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-muted dark:bg-silver/10 rounded-full overflow-hidden">
                     <motion.div 
                        initial={{ width: 0 }} 
                        animate={{ width: "85%" }} 
@@ -138,7 +138,7 @@ export function Hero() {
                        className="h-full bg-gradient-to-r from-gold to-gold-light rounded-full" 
                     />
                   </div>
-                  <div className="h-2 w-full bg-silver/10 rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-muted dark:bg-silver/10 rounded-full overflow-hidden">
                     <motion.div 
                        initial={{ width: 0 }} 
                        animate={{ width: "95%" }} 
@@ -146,7 +146,7 @@ export function Hero() {
                        className="h-full bg-gradient-to-r from-gold to-gold-light rounded-full" 
                     />
                   </div>
-                  <div className="h-2 w-full bg-silver/10 rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-muted dark:bg-silver/10 rounded-full overflow-hidden">
                     <motion.div 
                        initial={{ width: 0 }} 
                        animate={{ width: "70%" }} 
@@ -156,7 +156,7 @@ export function Hero() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-silver/80 pt-4 border-t border-silver/10">
+                <div className="flex items-center justify-between text-xs text-muted-foreground dark:text-silver/80 pt-4 border-t border-border dark:border-silver/10">
                   <span>Accbot Ledger Analysis</span>
                   <span className="text-gold font-semibold">Active Monitoring</span>
                 </div>

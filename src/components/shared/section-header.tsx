@@ -34,7 +34,7 @@ export function SectionHeader({
       className={cn("flex flex-col max-w-3xl mb-12 md:mb-16", alignmentClasses[align], className)}
     >
       {tag && (
-        <span className="text-xs font-bold text-gold tracking-widest uppercase mb-3 bg-gold-50 px-3 py-1.5 rounded-full border border-gold/10">
+        <span className="text-xs font-bold text-gold tracking-widest uppercase mb-3 bg-gold/10 dark:bg-gold/15 border border-gold/30 px-3.5 py-1.5 rounded-full shadow-2xs">
           {tag}
         </span>
       )}

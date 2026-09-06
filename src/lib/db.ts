@@ -28,21 +28,34 @@ const database = urlObj.pathname.replace(/^\//, "") || "postgres";
 
 // ─── Connection Pool ─────────────────────────────────────────────────────────
 
-const sql = postgres({
-  host,
-  port,
-  username,
-  password,
-  database,
-  // Pool limits — keep low for Supabase Transaction Pooler (port 6543)
-  max: 10,
-  idle_timeout: 20,
-  connect_timeout: 15,
-  // SSL required for Supabase hosted PostgreSQL
-  ssl: "require",
-  // Graceful connection error handling
-  onnotice: () => {}, // suppress NOTICE logs in production
-});
+declare global {
+  // eslint-disable-next-line no-var
+  var __accbot_sql: ReturnType<typeof postgres> | undefined;
+}
+
+const sql =
+  globalThis.__accbot_sql ??
+  postgres({
+    host,
+    port,
+    username,
+    password,
+    database,
+    // Pool limits: allow sufficient concurrent connections for dashboards without exhaustion
+    max: 15,
+    idle_timeout: 20,
+    connect_timeout: 15,
+    // Supabase transaction pooler (port 6543 / PgBouncer) requires prepare: false
+    prepare: false,
+    // SSL required for Supabase hosted PostgreSQL
+    ssl: "require",
+    // Graceful connection error handling
+    onnotice: () => {}, // suppress NOTICE logs in production
+  });
+
+if (process.env.NODE_ENV !== "production") {
+  globalThis.__accbot_sql = sql;
+}
 
 export { sql };
 export default sql;

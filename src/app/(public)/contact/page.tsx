@@ -56,21 +56,21 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col w-full">
       {/* Banner */}
-      <section className="relative bg-dark text-white py-20 overflow-hidden border-b border-gold/10">
+      <section className="relative bg-card text-foreground dark:bg-dark dark:text-white py-20 overflow-hidden border-b border-border dark:border-gold/10">
         <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
         <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
         <div className="container-custom relative z-10 text-center flex flex-col items-center">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/" className="hover:text-gold transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-white">Contact Us</span>
+            <span className="text-foreground dark:text-white">Contact Us</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold font-heading text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold font-heading text-foreground dark:text-white mb-4">
             Connect With Our Experts
           </h1>
           <div className="gold-divider mb-4" />
-          <p className="text-silver/90 text-base md:text-lg max-w-xl font-light">
-            We are here to answer your accounting, business setup, and auditing questions.
+          <p className="text-muted-foreground dark:text-silver/90 text-base md:text-lg max-w-xl font-normal">
+            We are here to answer your accounting, business incorporation, RAMIS tax filing, and auditing questions.
           </p>
         </div>
       </section>
@@ -86,12 +86,12 @@ export default function ContactPage() {
                   Contact Information
                 </h2>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Have questions about our audits, VAT representation, or setup parameters? Reach out directly or fill out the form.
+                  Have questions about our audits, IRD tax representation, or corporate setup? Reach out directly or fill out the form.
                 </p>
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="h-10 w-10 bg-gold-50 border border-gold/10 text-gold rounded-xl flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 bg-gold/15 border border-gold/25 text-gold rounded-xl flex items-center justify-center shrink-0">
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
@@ -101,7 +101,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="h-10 w-10 bg-gold-50 border border-gold/10 text-gold rounded-xl flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 bg-gold/15 border border-gold/25 text-gold rounded-xl flex items-center justify-center shrink-0">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="h-10 w-10 bg-gold-50 border border-gold/10 text-gold rounded-xl flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 bg-gold/15 border border-gold/25 text-gold rounded-xl flex items-center justify-center shrink-0">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
@@ -144,9 +144,9 @@ export default function ContactPage() {
                   <div className="absolute inset-0 bg-grid opacity-10" />
                   <div className="p-6">
                     <MapPin className="h-8 w-8 text-gold mx-auto mb-2 animate-bounce" />
-                    <h5 className="font-heading font-bold text-xs text-foreground">Dubai Business Bay Map Placeholder</h5>
+                    <h5 className="font-heading font-bold text-xs text-foreground">Colombo Business District (WTC) Map</h5>
                     <p className="text-muted-foreground text-[10px] mt-1 max-w-xs mx-auto">
-                      Real Google Maps component to be mounted upon domain configuration.
+                      World Trade Center, Echelon Square, Colombo 01, Sri Lanka.
                     </p>
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export default function ContactPage() {
                       <Label htmlFor="phone" className="text-xs font-semibold text-foreground">Phone Number (Optional)</Label>
                       <Input
                         id="phone"
-                        placeholder="+971 XX XXX XXXX"
+                        placeholder="+94 7X XXX XXXX"
                         {...register("phone")}
                         className="bg-surface/50 border-border/80 rounded-xl"
                       />
@@ -211,7 +211,7 @@ export default function ContactPage() {
                       <Label htmlFor="subject" className="text-xs font-semibold text-foreground">Subject *</Label>
                       <Input
                         id="subject"
-                        placeholder="Bookkeeping Assistance Inquiry"
+                        placeholder="Corporate Tax & Bookkeeping Inquiry"
                         {...register("subject")}
                         className="bg-surface/50 border-border/80 rounded-xl"
                       />
@@ -249,7 +249,7 @@ export default function ContactPage() {
                   >
                     {isSubmitting ? (
                       <>
-                        <span className="animate-spin rounded-full h-4 w-4 border-2 border-dark border-t-transparent" />
+                        <span className="animate-spin rounded-full h-4 w-4 border-2 border-current border-t-transparent" />
                         <span>Sending message...</span>
                       </>
                     ) : (

@@ -123,7 +123,7 @@ export default function SignupPage() {
                 <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="phone"
-                  placeholder="+971 XX XXX XXXX"
+                  placeholder="+94 7X XXX XXXX"
                   {...register("phone")}
                   className="pl-10 bg-surface/50 border-border/80 rounded-xl"
                 />
@@ -194,7 +194,7 @@ export default function SignupPage() {
             >
               {isSubmitting ? (
                 <>
-                  <span className="animate-spin rounded-full h-4 w-4 border-2 border-dark border-t-transparent" />
+                  <span className="animate-spin rounded-full h-4 w-4 border-2 border-current border-t-transparent" />
                   <span>Registering...</span>
                 </>
               ) : (

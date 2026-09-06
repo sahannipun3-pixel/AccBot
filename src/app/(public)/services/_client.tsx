@@ -37,7 +37,7 @@ export default function ServicesPageClient({ services }: Props) {
   return (
     <div className="flex flex-col w-full">
       {/* Banner / Hero */}
-      <section className="relative bg-dark text-white py-20 overflow-hidden border-b border-gold/10">
+      <section className="relative bg-card text-foreground dark:bg-dark dark:text-white py-20 overflow-hidden border-b border-border dark:border-gold/10">
         <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
         <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
         <div className="container-custom relative z-10 text-center flex flex-col items-center">
@@ -47,15 +47,15 @@ export default function ServicesPageClient({ services }: Props) {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold mb-4"
           >
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/" className="hover:text-gold transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-white">Services</span>
+            <span className="text-foreground dark:text-white">Services</span>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-extrabold font-heading text-white mb-4"
+            className="text-4xl md:text-5xl font-extrabold font-heading text-foreground dark:text-white mb-4"
           >
             Corporate &amp; Advisory Services
           </motion.h1>
@@ -64,10 +64,10 @@ export default function ServicesPageClient({ services }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-silver/90 text-base md:text-lg max-w-xl font-light"
+            className="text-muted-foreground dark:text-silver/90 text-base md:text-lg max-w-xl font-normal"
           >
-            Explore our professional services covering business creation, financial compliance,
-            audit assurance, and wealth management.
+            Explore our professional services covering company incorporation, IRD tax compliance,
+            audit assurance, and financial architecture.
           </motion.p>
         </div>
       </section>
@@ -100,7 +100,7 @@ export default function ServicesPageClient({ services }: Props) {
                     <Card className="h-full flex flex-col justify-between border-border hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-300 card-hover bg-card rounded-2xl overflow-hidden group">
                       <div className="p-1 h-1.5 bg-gradient-to-r from-gold/50 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <CardHeader className="pt-6 px-6 pb-4">
-                        <div className="h-12 w-12 bg-gold-50 border border-gold/10 text-gold rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                        <div className="h-12 w-12 bg-gold/15 border border-gold/25 text-gold rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-sm">
                           <Icon className="h-6 w-6" />
                         </div>
                         <h3 className="font-heading font-bold text-lg text-foreground group-hover:text-gold transition-colors duration-300">
@@ -138,7 +138,7 @@ export default function ServicesPageClient({ services }: Props) {
           </h2>
           <div className="gold-divider mb-6" />
           <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-xl">
-            Our certified accountants and tax agents can customize solutions based on your size,
+            Our certified accountants and tax advisors can customize solutions based on your size,
             transaction frequency, and business goals.
           </p>
           <Link href="/contact">

@@ -96,7 +96,7 @@ interface JournalLine {
         code: accCode,
         name: accName,
         type: accType,
-        currency: "AED",
+        currency: "LKR",
         is_active: true
       });
 
@@ -162,12 +162,12 @@ interface JournalLine {
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-2">
-            <h1 className="text-3xl font-extrabold font-heading text-dark flex items-center gap-3">
+            <h1 className="text-3xl font-extrabold font-heading text-foreground flex items-center gap-3">
               <Scale className="h-8 w-8 text-gold" />
               Double-Entry Ledger Portal
             </h1>
             <p className="text-muted-foreground text-sm max-w-xl">
-              Inspect UAE corporate ledger nodes, post balanced journal splits, and compile real-time financial statements.
+              Inspect corporate ledger accounts, post balanced journal entries, and compile real-time financial statements.
             </p>
           </div>
 
@@ -359,7 +359,7 @@ interface JournalLine {
                           </div>
                           
                           <div className="w-full md:w-1/4 space-y-1 text-left">
-                            <Label className="text-[10px] font-bold text-muted-foreground uppercase">Debit (AED)</Label>
+                            <Label className="text-[10px] font-bold text-muted-foreground uppercase">Debit (LKR)</Label>
                             <Input
                               type="number"
                               step="0.01"
@@ -371,7 +371,7 @@ interface JournalLine {
                           </div>
 
                           <div className="w-full md:w-1/4 space-y-1 text-left">
-                            <Label className="text-[10px] font-bold text-muted-foreground uppercase">Credit (AED)</Label>
+                            <Label className="text-[10px] font-bold text-muted-foreground uppercase">Credit (LKR)</Label>
                             <Input
                               type="number"
                               step="0.01"
@@ -416,11 +416,11 @@ interface JournalLine {
                     <div className="flex gap-6 text-xs sm:text-sm">
                       <div>
                         <span className="text-muted-foreground font-semibold">Total Debits:</span>{" "}
-                        <span className="font-bold text-dark">{totalDebit.toFixed(2)} AED</span>
+                        <span className="font-bold text-foreground">{totalDebit.toFixed(2)} LKR</span>
                       </div>
                       <div>
                         <span className="text-muted-foreground font-semibold">Total Credits:</span>{" "}
-                        <span className="font-bold text-dark">{totalCredit.toFixed(2)} AED</span>
+                        <span className="font-bold text-foreground">{totalCredit.toFixed(2)} LKR</span>
                       </div>
                     </div>
 
@@ -491,9 +491,9 @@ interface JournalLine {
                         <TableHead className="font-semibold text-foreground font-heading">Code</TableHead>
                         <TableHead className="font-semibold text-foreground font-heading">Account</TableHead>
                         <TableHead className="font-semibold text-foreground font-heading">Type</TableHead>
-                        <TableHead className="font-semibold text-foreground font-heading text-right">Debit Summary (AED)</TableHead>
-                        <TableHead className="font-semibold text-foreground font-heading text-right">Credit Summary (AED)</TableHead>
-                        <TableHead className="font-semibold text-foreground font-heading text-right">Net Balance (AED)</TableHead>
+                        <TableHead className="font-semibold text-foreground font-heading text-right">Debit Summary (LKR)</TableHead>
+                        <TableHead className="font-semibold text-foreground font-heading text-right">Credit Summary (LKR)</TableHead>
+                        <TableHead className="font-semibold text-foreground font-heading text-right">Net Balance (LKR)</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -536,12 +536,12 @@ interface JournalLine {
                         {plReport.revenues.map((r) => (
                           <div key={r.code} className="flex justify-between text-xs font-medium text-foreground/90">
                             <span>{r.code} — {r.name}</span>
-                            <span>{r.balance.toFixed(2)} AED</span>
+                            <span>{r.balance.toFixed(2)} LKR</span>
                           </div>
                         ))}
                         <div className="flex justify-between text-xs font-bold text-foreground pt-2 border-t border-dashed border-border/80">
                           <span>Total Revenues</span>
-                          <span>{plReport.totalRevenues.toFixed(2)} AED</span>
+                          <span>{plReport.totalRevenues.toFixed(2)} LKR</span>
                         </div>
                       </div>
                     )}
@@ -557,12 +557,12 @@ interface JournalLine {
                         {plReport.expenses.map((e) => (
                           <div key={e.code} className="flex justify-between text-xs font-medium text-foreground/90">
                             <span>{e.code} — {e.name}</span>
-                            <span>{e.balance.toFixed(2)} AED</span>
+                            <span>{e.balance.toFixed(2)} LKR</span>
                           </div>
                         ))}
                         <div className="flex justify-between text-xs font-bold text-foreground pt-2 border-t border-dashed border-border/80">
                           <span>Total Expenses</span>
-                          <span>{plReport.totalExpenses.toFixed(2)} AED</span>
+                          <span>{plReport.totalExpenses.toFixed(2)} LKR</span>
                         </div>
                       </div>
                     )}
@@ -572,7 +572,7 @@ interface JournalLine {
                   <div className="flex justify-between items-center bg-surface/30 p-4 rounded-xl border border-border mt-4">
                     <span className="text-sm font-bold text-foreground font-heading">Net Profit / Loss</span>
                     <span className={`text-base font-extrabold font-heading ${plReport.netProfitLoss < 0 ? "text-red-500" : "text-green-600"}`}>
-                      {plReport.netProfitLoss.toFixed(2)} AED
+                      {plReport.netProfitLoss.toFixed(2)} LKR
                     </span>
                   </div>
                 </CardContent>
@@ -602,12 +602,12 @@ interface JournalLine {
                         {bsReport.assets.map((a) => (
                           <div key={a.code} className="flex justify-between text-xs font-medium text-foreground/90">
                             <span>{a.code} — {a.name}</span>
-                            <span>{a.balance.toFixed(2)} AED</span>
+                            <span>{a.balance.toFixed(2)} LKR</span>
                           </div>
                         ))}
                         <div className="flex justify-between text-xs font-bold text-foreground pt-2 border-t border-dashed border-border/80">
                           <span>Total Assets</span>
-                          <span>{bsReport.totalAssets.toFixed(2)} AED</span>
+                          <span>{bsReport.totalAssets.toFixed(2)} LKR</span>
                         </div>
                       </div>
                     )}
@@ -623,12 +623,12 @@ interface JournalLine {
                         {bsReport.liabilities.map((l) => (
                           <div key={l.code} className="flex justify-between text-xs font-medium text-foreground/90">
                             <span>{l.code} — {l.name}</span>
-                            <span>{l.balance.toFixed(2)} AED</span>
+                            <span>{l.balance.toFixed(2)} LKR</span>
                           </div>
                         ))}
                         <div className="flex justify-between text-xs font-bold text-foreground pt-2 border-t border-dashed border-border/80">
                           <span>Total Liabilities</span>
-                          <span>{bsReport.totalLiabilities.toFixed(2)} AED</span>
+                          <span>{bsReport.totalLiabilities.toFixed(2)} LKR</span>
                         </div>
                       </div>
                     )}
@@ -641,16 +641,16 @@ interface JournalLine {
                       {bsReport.equity.map((eq) => (
                         <div key={eq.code} className="flex justify-between text-xs font-medium text-foreground/90">
                           <span>{eq.code} — {eq.name}</span>
-                          <span>{eq.balance.toFixed(2)} AED</span>
+                          <span>{eq.balance.toFixed(2)} LKR</span>
                         </div>
                       ))}
                       <div className="flex justify-between text-xs font-medium text-foreground/90">
                         <span>Retained Earnings (Dynamic Net Income)</span>
-                        <span>{bsReport.netIncomeRetained.toFixed(2)} AED</span>
+                        <span>{bsReport.netIncomeRetained.toFixed(2)} LKR</span>
                       </div>
-                      <div className="flex justify-between text-xs font-bold text-dark pt-2 border-t border-dashed border-border/80">
+                      <div className="flex justify-between text-xs font-bold text-foreground pt-2 border-t border-dashed border-border/80">
                         <span>Total Equity</span>
-                        <span>{bsReport.totalEquity.toFixed(2)} AED</span>
+                        <span>{bsReport.totalEquity.toFixed(2)} LKR</span>
                       </div>
                     </div>
                   </div>
@@ -659,14 +659,14 @@ interface JournalLine {
                   <div className="grid grid-cols-2 gap-4 bg-surface/30 p-4 rounded-xl border border-border mt-4">
                     <div className="text-left">
                       <span className="text-xs font-bold text-muted-foreground uppercase">Total Assets</span>
-                      <h4 className="text-lg font-extrabold font-heading text-dark mt-0.5">
-                        {bsReport.totalAssets.toFixed(2)} AED
+                      <h4 className="text-lg font-extrabold font-heading text-foreground mt-0.5">
+                        {bsReport.totalAssets.toFixed(2)} LKR
                       </h4>
                     </div>
                     <div className="text-right">
                       <span className="text-xs font-bold text-muted-foreground uppercase">Total Liabilities + Equity</span>
-                      <h4 className="text-lg font-extrabold font-heading text-dark mt-0.5">
-                        {(bsReport.totalLiabilities + bsReport.totalEquity).toFixed(2)} AED
+                      <h4 className="text-lg font-extrabold font-heading text-foreground mt-0.5">
+                        {(bsReport.totalLiabilities + bsReport.totalEquity).toFixed(2)} LKR
                       </h4>
                     </div>
                   </div>

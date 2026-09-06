@@ -61,27 +61,27 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   return (
     <div className="flex flex-col w-full">
       {/* Service Banner */}
-      <section className="relative bg-dark text-white py-24 overflow-hidden border-b border-gold/10">
+      <section className="relative bg-card text-foreground dark:bg-dark dark:text-white py-24 overflow-hidden border-b border-border dark:border-gold/10">
         <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
         <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
         <div className="container-custom relative z-10 text-center flex flex-col items-center">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/" className="hover:text-gold transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+            <Link href="/services" className="hover:text-gold transition-colors">Services</Link>
             <span>/</span>
-            <span className="text-white">{service.title}</span>
+            <span className="text-foreground dark:text-white">{service.title}</span>
           </div>
 
           <div className="h-16 w-16 bg-gold/10 border border-gold/30 text-gold rounded-2xl flex items-center justify-center mb-6 shadow-lg">
             <Icon className="h-8 w-8" />
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-extrabold font-heading text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-extrabold font-heading text-foreground dark:text-white mb-4">
             {service.title}
           </h1>
           <div className="gold-divider mb-4" />
-          <p className="text-silver/90 text-base md:text-lg max-w-2xl font-light leading-relaxed">
+          <p className="text-muted-foreground dark:text-silver/90 text-base md:text-lg max-w-2xl font-normal leading-relaxed">
             {service.short_description}
           </p>
         </div>
@@ -138,7 +138,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <span className="absolute -top-6 -right-6 text-7xl font-bold text-gold/5 font-heading">
                   {step.step}
                 </span>
-                <div className="h-10 w-10 bg-gold-50 border border-gold/10 text-gold rounded-lg flex items-center justify-center font-bold text-sm">
+                <div className="h-10 w-10 bg-gold/15 border border-gold/25 text-gold rounded-lg flex items-center justify-center font-bold text-sm">
                   0{step.step}
                 </div>
                 <div className="space-y-2">
@@ -181,18 +181,18 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       </section>
 
       {/* Service Contact CTA */}
-      <section className="section-padding bg-dark text-white border-t border-gold/10">
+      <section className="section-padding bg-gradient-to-b from-card to-surface text-foreground dark:from-dark dark:to-[#0A0B0E] dark:text-white border-t border-border dark:border-gold/10">
         <div className="container-custom text-center max-w-3xl flex flex-col items-center">
-          <h2 className="text-3xl font-bold font-heading text-white mb-4">
+          <h2 className="text-3xl font-bold font-heading text-foreground dark:text-white mb-4">
             Request an Inquiry for {service.title}
           </h2>
           <div className="gold-divider mb-6" />
-          <p className="text-silver/90 text-base font-light mb-8 leading-relaxed max-w-xl">
-            Get an instant custom quote and consult our FTA-registered team. Secure your company audit or registration details.
+          <p className="text-muted-foreground dark:text-silver/90 text-base font-normal mb-8 leading-relaxed max-w-xl">
+            Get an instant custom quote and consult our chartered accounting team. Secure your corporate audit or tax registration details.
           </p>
           <Link href="/contact">
             <Button size="lg" className="flex items-center gap-2 group shadow-lg">
-              <span>Contact Agent</span>
+              <span>Contact Advisor</span>
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>

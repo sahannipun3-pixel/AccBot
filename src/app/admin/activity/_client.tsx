@@ -29,6 +29,7 @@ import {
   ShieldCheck,
   Code,
   RotateCcw,
+  Filter,
 } from "lucide-react";
 import type { ActivityLog } from "@/types";
 
@@ -72,11 +73,11 @@ export default function AdminActivityClient({ initialLogs, total }: Props) {
   };
 
   const getActionBadgeColor = (action: string) => {
-    if (action.includes("delete")) return "bg-red-50 text-red-600 border-red-200";
-    if (action.includes("create")) return "bg-green-50 text-green-600 border-green-200";
+    if (action.includes("delete")) return "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20";
+    if (action.includes("create")) return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
     if (action.includes("update") || action.includes("toggle"))
-      return "bg-gold-50 text-gold border-gold/20";
-    return "bg-surface text-dark-800 border-border";
+      return "bg-gold/15 text-gold border-gold/30";
+    return "bg-surface text-foreground border-border";
   };
 
   return (
@@ -84,7 +85,7 @@ export default function AdminActivityClient({ initialLogs, total }: Props) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-dark">
+          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-foreground">
             Activity Audit Trail
           </h1>
           <p className="text-muted-foreground text-xs sm:text-sm mt-1">
@@ -93,36 +94,40 @@ export default function AdminActivityClient({ initialLogs, total }: Props) {
         </div>
       </div>
 
-      {/* Main Table Card */}
+      {/* Audit Log Table Card */}
       <Card className="border border-border/80 bg-card rounded-2xl shadow-xs overflow-hidden">
-        {/* Controls Bar */}
+        {/* Table Controls */}
         <div className="p-5 border-b border-border/60 flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between bg-surface/30">
           <div className="flex flex-wrap items-center gap-3 flex-1">
             <div className="relative w-full sm:w-72">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search action, entity, user..."
+                placeholder="Search action, user, entity ID..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="pl-9 bg-card border-border/80 rounded-xl text-xs"
               />
             </div>
 
-            <select
-              value={entityFilter}
-              onChange={(e) => setEntityFilter(e.target.value)}
-              className="h-10 rounded-xl border border-border/80 bg-card px-3 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-gold/30"
-            >
-              {ENTITY_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
+            {/* Entity Filter Dropdown */}
+            <div className="flex items-center gap-2">
+              <Filter className="h-3.5 w-3.5 text-muted-foreground" />
+              <select
+                value={entityFilter}
+                onChange={(e) => setEntityFilter(e.target.value)}
+                className="h-9 rounded-xl border border-border/80 bg-card px-3 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-gold/30"
+              >
+                {ENTITY_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <span className="text-xs font-semibold text-muted-foreground shrink-0">
-            Showing {filteredLogs.length} of {total} audit records
+            Showing {filteredLogs.length} events
           </span>
         </div>
 
@@ -130,7 +135,7 @@ export default function AdminActivityClient({ initialLogs, total }: Props) {
           {filteredLogs.length === 0 ? (
             <div className="py-20 text-center px-4">
               <Activity className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="font-bold text-sm text-foreground">No audit records found</p>
+              <p className="font-bold text-sm text-foreground">No matching activity records</p>
               <p className="text-xs text-muted-foreground max-w-xs mx-auto mt-1">
                 Administrative events such as service updates, status changes, and role assignments will be recorded here.
               </p>
@@ -139,11 +144,11 @@ export default function AdminActivityClient({ initialLogs, total }: Props) {
             <Table>
               <TableHeader className="bg-surface/50">
                 <TableRow>
-                  <TableHead className="font-semibold text-dark font-heading">Action Performed</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Entity Type</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Actor / Administrator</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Timestamp</TableHead>
-                  <TableHead className="text-right font-semibold text-dark font-heading">Details</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Action Performed</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Entity Type</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Actor / Administrator</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Timestamp</TableHead>
+                  <TableHead className="text-right font-semibold text-foreground font-heading">Details</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -162,13 +167,13 @@ export default function AdminActivityClient({ initialLogs, total }: Props) {
                       </div>
                     </TableCell>
 
-                    <TableCell className="text-xs font-semibold text-dark font-mono">
+                    <TableCell className="text-xs font-semibold text-foreground font-mono">
                       {log.entity_type}
                     </TableCell>
 
                     <TableCell>
                       <div className="flex flex-col text-left">
-                        <span className="font-bold text-xs text-dark">
+                        <span className="font-bold text-xs text-foreground">
                           {log.user_name || "System Automated"}
                         </span>
                         {log.user_email && (
@@ -180,7 +185,7 @@ export default function AdminActivityClient({ initialLogs, total }: Props) {
                     </TableCell>
 
                     <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
-                      {new Date(log.created_at).toLocaleString("en-AE", {
+                      {new Date(log.created_at).toLocaleString("en-LK", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
@@ -236,7 +241,7 @@ export default function AdminActivityClient({ initialLogs, total }: Props) {
                 </div>
                 <div>
                   <span className="text-muted-foreground block text-[11px] font-bold">TIMESTAMP</span>
-                  <span className="text-foreground">{new Date(selectedLog.created_at).toLocaleString("en-AE")}</span>
+                  <span className="text-foreground">{new Date(selectedLog.created_at).toLocaleString("en-LK")}</span>
                 </div>
               </div>
 

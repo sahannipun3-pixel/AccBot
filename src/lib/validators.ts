@@ -158,7 +158,7 @@ export const ledgerAccountSchema = z.object({
   code: z.string().min(2, "Account code is required").max(20),
   name: z.string().min(2, "Account name is required").max(100),
   type: z.enum(["asset", "liability", "equity", "revenue", "expense"]),
-  currency: z.string().min(3).max(3).default("AED"),
+  currency: z.string().min(3).max(3).default("LKR"),
   is_active: z.boolean().default(true),
 });
 

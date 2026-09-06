@@ -83,7 +83,7 @@ export function AvatarUpload({ currentAvatarUrl, displayName, onUploadSuccess }:
     <div className="relative inline-block mx-auto mb-4 group">
       <Avatar className="h-24 w-24 border-2 border-gold shadow-md">
         <AvatarImage src={preview || undefined} alt={displayName} />
-        <AvatarFallback className="bg-gold-50 text-gold font-bold text-2xl">
+        <AvatarFallback className="bg-gold/15 text-gold font-bold text-2xl border border-gold/30">
           {initials}
         </AvatarFallback>
       </Avatar>

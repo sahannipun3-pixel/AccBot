@@ -113,7 +113,7 @@ function ResetPasswordForm() {
             >
               {isSubmitting ? (
                 <>
-                  <span className="animate-spin rounded-full h-4 w-4 border-2 border-dark border-t-transparent" />
+                  <span className="animate-spin rounded-full h-4 w-4 border-2 border-current border-t-transparent" />
                   <span>Saving new password...</span>
                 </>
               ) : (

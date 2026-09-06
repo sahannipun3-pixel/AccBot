@@ -32,21 +32,21 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0D0D0D] text-white relative overflow-hidden">
-      {/* Top gold border */}
-      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+    <footer className="bg-card text-foreground dark:bg-[#0A0B0E] border-t border-border relative overflow-hidden transition-colors duration-300">
+      {/* Top gold accent gradient */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-gold to-transparent" />
 
-      {/* Subtle bg decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/4 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gold/3 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      {/* Subtle glow accents */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/3 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gold/2 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
       <div className="container-custom relative z-10 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12">
 
           {/* Col 1 — Brand */}
-          <div className="flex flex-col gap-5 lg:col-span-1">
-            <Logo textClassName="text-white" />
-            <p className="text-white/55 text-sm leading-relaxed">
+          <div className="flex flex-col gap-5 lg:col-span-1 text-left">
+            <Logo />
+            <p className="text-muted-foreground text-sm leading-relaxed">
               {COMPANY.description}
             </p>
             {/* Social icons */}
@@ -57,7 +57,7 @@ export function Footer() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="h-9 w-9 bg-white/5 border border-white/10 hover:bg-gold hover:border-gold hover:text-dark rounded-lg flex items-center justify-center transition-all duration-200 text-white/60 hover:text-dark"
+                    className="h-9 w-9 bg-muted/60 border border-border hover:bg-gold hover:border-gold hover:text-dark text-muted-foreground rounded-xl flex items-center justify-center transition-all duration-200 shadow-xs"
                     aria-label={link.name}
                   >
                     <IconComponent className="h-4 w-4" />
@@ -68,19 +68,19 @@ export function Footer() {
           </div>
 
           {/* Col 2 — Quick Links */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-heading font-semibold text-[11px] text-gold tracking-[0.12em] uppercase">
-              Quick Links
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-heading font-bold text-xs text-gold tracking-[0.12em] uppercase">
+              Quick Navigation
             </h3>
             <ul className="flex flex-col gap-2.5">
               {FOOTER_LINKS.quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/55 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1 group w-fit"
+                    className="text-muted-foreground hover:text-foreground text-sm transition-colors duration-200 flex items-center gap-1 group w-fit"
                   >
                     <span>{link.label}</span>
-                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-60 -translate-x-1 group-hover:translate-x-0 transition-all duration-200" />
+                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200 text-gold" />
                   </Link>
                 </li>
               ))}
@@ -88,19 +88,19 @@ export function Footer() {
           </div>
 
           {/* Col 3 — Services */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-heading font-semibold text-[11px] text-gold tracking-[0.12em] uppercase">
-              Our Services
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-heading font-bold text-xs text-gold tracking-[0.12em] uppercase">
+              Practice Areas
             </h3>
             <ul className="flex flex-col gap-2.5">
               {FOOTER_LINKS.services.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/55 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1 group w-fit"
+                    className="text-muted-foreground hover:text-foreground text-sm transition-colors duration-200 flex items-center gap-1 group w-fit"
                   >
                     <span>{link.label}</span>
-                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-60 -translate-x-1 group-hover:translate-x-0 transition-all duration-200" />
+                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200 text-gold" />
                   </Link>
                 </li>
               ))}
@@ -108,20 +108,20 @@ export function Footer() {
           </div>
 
           {/* Col 4 — Contact */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-heading font-semibold text-[11px] text-gold tracking-[0.12em] uppercase">
-              Contact
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-heading font-bold text-xs text-gold tracking-[0.12em] uppercase">
+              Colombo Head Office
             </h3>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3.5">
               <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-gold shrink-0 mt-0.5" />
-                <span className="text-white/55 text-sm leading-snug">{COMPANY.address}</span>
+                <MapPin className="h-4 w-4 text-gold shrink-0 mt-1" />
+                <span className="text-muted-foreground text-sm leading-snug">{COMPANY.address}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-gold shrink-0" />
                 <a
                   href={`mailto:${COMPANY.email}`}
-                  className="text-white/55 hover:text-white text-sm transition-colors"
+                  className="text-muted-foreground hover:text-foreground text-sm transition-colors"
                 >
                   {COMPANY.email}
                 </a>
@@ -130,7 +130,7 @@ export function Footer() {
                 <Phone className="h-4 w-4 text-gold shrink-0" />
                 <a
                   href={`tel:${COMPANY.phone}`}
-                  className="text-white/55 hover:text-white text-sm transition-colors"
+                  className="text-muted-foreground hover:text-foreground text-sm transition-colors font-medium"
                 >
                   {COMPANY.phone}
                 </a>
@@ -139,24 +139,24 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator className="bg-white/8 my-0" />
+        <Separator className="bg-border my-0" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-[12px] text-white/35">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-xs text-muted-foreground">
           <div className="flex flex-wrap items-center gap-4 justify-center sm:justify-start">
-            <span>© {currentYear} AccBot. All rights reserved.</span>
+            <span>© {currentYear} AccBot Sri Lanka. All rights reserved.</span>
             <span>
               Developed by{" "}
-              <span className="text-gold/70 hover:text-gold transition-colors">
+              <span className="text-gold font-medium">
                 Nexora Software Solutions
               </span>
             </span>
           </div>
           <div className="flex items-center gap-5">
-            <Link href="/terms" className="hover:text-white/70 transition-colors">
+            <Link href="/terms" className="hover:text-foreground transition-colors">
               Terms of Service
             </Link>
-            <Link href="/privacy" className="hover:text-white/70 transition-colors">
+            <Link href="/privacy" className="hover:text-foreground transition-colors">
               Privacy Policy
             </Link>
           </div>

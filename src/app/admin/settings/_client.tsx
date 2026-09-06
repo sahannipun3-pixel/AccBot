@@ -84,7 +84,7 @@ export default function AdminSettingsClient({ initialSettings }: Props) {
   return (
     <div className="space-y-8 text-left max-w-4xl">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-dark">
+        <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-foreground">
           Portal Configurations
         </h1>
         <p className="text-muted-foreground text-xs sm:text-sm">
@@ -194,7 +194,7 @@ export default function AdminSettingsClient({ initialSettings }: Props) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {(["linkedin_url", "twitter_url", "facebook_url", "instagram_url"] as const).map((key) => (
                   <div key={key} className="space-y-1.5">
-                    <Label htmlFor={key} className="text-xs font-semibold text-dark-800 capitalize">
+                    <Label htmlFor={key} className="text-xs font-semibold text-foreground capitalize">
                       {key.replace("_url", "").charAt(0).toUpperCase() + key.replace("_url", "").slice(1)} URL
                     </Label>
                     <div className="relative">

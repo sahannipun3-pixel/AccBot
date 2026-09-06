@@ -295,7 +295,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-dark">
+          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-foreground">
             Blog &amp; Knowledge Base CMS
           </h1>
           <p className="text-muted-foreground text-xs sm:text-sm mt-1">
@@ -365,7 +365,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
           {filtered.length === 0 ? (
             <div className="py-20 text-center px-4">
               <FileText className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="font-bold text-sm text-dark">No blog articles found</p>
+              <p className="font-bold text-sm text-foreground">No blog articles found</p>
               <p className="text-xs text-muted-foreground max-w-xs mx-auto mt-1">
                 {search || filterTab !== "all"
                   ? "Try resetting your search filters."
@@ -376,11 +376,11 @@ export default function AdminBlogClient({ initialPosts }: Props) {
             <Table>
               <TableHeader className="bg-surface/50">
                 <TableRow>
-                  <TableHead className="font-semibold text-dark font-heading">Article</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Slug / URL</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Status</TableHead>
-                  <TableHead className="font-semibold text-dark font-heading">Published Date</TableHead>
-                  <TableHead className="text-right font-semibold text-dark font-heading">Actions</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Article</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Slug / URL</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Status</TableHead>
+                  <TableHead className="font-semibold text-foreground font-heading">Published Date</TableHead>
+                  <TableHead className="text-right font-semibold text-foreground font-heading">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -400,7 +400,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
                           </div>
                         )}
                         <div className="flex flex-col">
-                          <span className="font-bold text-sm text-dark line-clamp-1">{post.title}</span>
+                          <span className="font-bold text-sm text-foreground line-clamp-1">{post.title}</span>
                           <span className="text-[11px] text-muted-foreground line-clamp-1">{post.excerpt}</span>
                         </div>
                       </div>
@@ -414,8 +414,8 @@ export default function AdminBlogClient({ initialPosts }: Props) {
                       <Badge
                         className={
                           post.is_published
-                            ? "bg-green-50 text-green-600 border-green-200"
-                            : "bg-amber-50 text-amber-600 border-amber-200"
+                            ? "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20"
+                            : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
                         }
                         variant="outline"
                       >
@@ -425,7 +425,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
 
                     <TableCell className="text-xs text-muted-foreground">
                       {post.published_at
-                        ? new Date(post.published_at).toLocaleDateString("en-AE", {
+                        ? new Date(post.published_at).toLocaleDateString("en-LK", {
                             day: "numeric",
                             month: "short",
                             year: "numeric",
@@ -502,11 +502,11 @@ export default function AdminBlogClient({ initialPosts }: Props) {
           <form onSubmit={handleSubmit(onFormSubmit)} className="px-6 py-5 space-y-4">
             {/* Cover Image Upload */}
             <div className="space-y-1.5">
-              <Label className="text-xs font-semibold text-dark-800">Cover Image</Label>
+              <Label className="text-xs font-semibold text-foreground">Cover Image</Label>
               <div
                 onClick={() => !coverUploading && imageInputRef.current?.click()}
                 className={cn(
-                  "relative w-full h-36 rounded-xl border-2 border-dashed border-border/80 bg-surface/50 flex items-center justify-center cursor-pointer hover:border-gold/50 hover:bg-gold-50/20 transition-all overflow-hidden",
+                  "relative w-full h-36 rounded-xl border-2 border-dashed border-border/80 bg-surface/50 flex items-center justify-center cursor-pointer hover:border-gold/50 hover:bg-gold/10 transition-all overflow-hidden",
                   coverUploading && "cursor-not-allowed"
                 )}
               >
@@ -545,7 +545,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
             {/* Title + Slug */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label htmlFor="title" className="text-xs font-semibold text-dark-800">
+                <Label htmlFor="title" className="text-xs font-semibold text-foreground">
                   Article Title *
                 </Label>
                 <Input
@@ -567,7 +567,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="slug" className="text-xs font-semibold text-dark-800">
+                <Label htmlFor="slug" className="text-xs font-semibold text-foreground">
                   URL Slug *
                 </Label>
                 <Input
@@ -587,7 +587,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
 
             {/* Excerpt */}
             <div className="space-y-1.5">
-              <Label htmlFor="excerpt" className="text-xs font-semibold text-dark-800">
+              <Label htmlFor="excerpt" className="text-xs font-semibold text-foreground">
                 Short Excerpt * <span className="text-muted-foreground font-normal">(displayed on listing preview)</span>
               </Label>
               <Textarea
@@ -607,7 +607,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
 
             {/* Content Body */}
             <div className="space-y-1.5">
-              <Label htmlFor="content" className="text-xs font-semibold text-dark-800">
+              <Label htmlFor="content" className="text-xs font-semibold text-foreground">
                 Full Article Content * <span className="text-muted-foreground font-normal">(supports Markdown headings, lists, quotes)</span>
               </Label>
               <Textarea
@@ -634,7 +634,7 @@ export default function AdminBlogClient({ initialPosts }: Props) {
               />
               <Label
                 htmlFor="is_published"
-                className="text-xs font-semibold text-dark cursor-pointer flex items-center gap-1.5"
+                className="text-xs font-semibold text-foreground cursor-pointer flex items-center gap-1.5"
               >
                 <Globe className="h-4 w-4 text-gold" />
                 Publish article immediately (visible on /blog)

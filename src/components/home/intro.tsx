@@ -43,19 +43,19 @@ export function Intro() {
             
             <ul className="space-y-4 mb-8">
               <li className="flex items-center gap-3">
-                <div className="h-5 w-5 bg-gold-50 border border-gold/20 text-gold rounded-full flex items-center justify-center shrink-0">
+                <div className="h-5 w-5 bg-gold/10 dark:bg-gold/15 border border-gold/30 text-gold rounded-full flex items-center justify-center shrink-0">
                   <Check className="h-3.5 w-3.5" />
                 </div>
                 <span className="text-foreground text-sm font-medium">Fully certified auditing agents.</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="h-5 w-5 bg-gold-50 border border-gold/20 text-gold rounded-full flex items-center justify-center shrink-0">
+                <div className="h-5 w-5 bg-gold/10 dark:bg-gold/15 border border-gold/30 text-gold rounded-full flex items-center justify-center shrink-0">
                   <Check className="h-3.5 w-3.5" />
                 </div>
                 <span className="text-foreground text-sm font-medium">Personalized 1-on-1 financial consultation.</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="h-5 w-5 bg-gold-50 border border-gold/20 text-gold rounded-full flex items-center justify-center shrink-0">
+                <div className="h-5 w-5 bg-gold/10 dark:bg-gold/15 border border-gold/30 text-gold rounded-full flex items-center justify-center shrink-0">
                   <Check className="h-3.5 w-3.5" />
                 </div>
                 <span className="text-foreground text-sm font-medium">Strategic guidance on international setup.</span>

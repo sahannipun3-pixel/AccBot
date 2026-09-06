@@ -160,7 +160,7 @@ export default function AdminLayoutClient({
               <Logo showText={true} />
               <Badge
                 variant="outline"
-                className="bg-gold-50 text-gold border-gold/20 text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5"
+                className="bg-gold/15 text-gold border-gold/30 text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5"
               >
                 {user.role === "super_admin" ? "SUPER ADMIN" : "ADMIN"}
               </Badge>
@@ -226,7 +226,7 @@ export default function AdminLayoutClient({
                             "px-2 py-0.5 text-[11px] font-bold rounded-full",
                             isActive
                               ? "bg-dark text-white"
-                              : "bg-gold-50 text-gold border border-gold/30"
+                              : "bg-gold/15 text-gold border border-gold/30"
                           )}
                         >
                           {badge}
@@ -263,7 +263,7 @@ export default function AdminLayoutClient({
               <div className="flex items-center gap-2.5 min-w-0">
                 <Avatar className="h-8 w-8 border border-gold/30">
                   {user.avatar_url && <AvatarImage src={user.avatar_url} alt={user.full_name} />}
-                  <AvatarFallback className="bg-gold-50 text-gold text-xs font-bold">
+                  <AvatarFallback className="bg-gold/15 text-gold text-xs font-bold">
                     {user.full_name.slice(0, 2).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
@@ -362,7 +362,7 @@ export default function AdminLayoutClient({
                         <span
                           className={cn(
                             "px-2 py-0.5 text-[11px] font-bold rounded-full",
-                            isActive ? "bg-dark text-white" : "bg-gold-50 text-gold"
+                            isActive ? "bg-dark text-white" : "bg-gold/15 text-gold border border-gold/30"
                           )}
                         >
                           {badge}
@@ -458,7 +458,7 @@ export default function AdminLayoutClient({
                       <DropdownMenuItem
                         render={
                           <Link href="/admin/messages" className="flex items-start gap-3 p-2.5 rounded-xl cursor-pointer w-full">
-                            <div className="h-8 w-8 rounded-lg bg-gold-50 text-gold flex items-center justify-center shrink-0">
+                            <div className="h-8 w-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center shrink-0">
                               <Mail className="h-4 w-4" />
                             </div>
                             <div>
@@ -477,7 +477,7 @@ export default function AdminLayoutClient({
                       <DropdownMenuItem
                         render={
                           <Link href="/expense-tracker" className="flex items-start gap-3 p-2.5 rounded-xl cursor-pointer w-full">
-                            <div className="h-8 w-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                            <div className="h-8 w-8 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
                               <Receipt className="h-4 w-4" />
                             </div>
                             <div>
@@ -507,7 +507,7 @@ export default function AdminLayoutClient({
                   >
                     <Avatar className="h-8 w-8 border border-gold/30">
                       {user.avatar_url && <AvatarImage src={user.avatar_url} alt={user.full_name} />}
-                      <AvatarFallback className="bg-gold-50 text-gold font-bold text-xs">
+                      <AvatarFallback className="bg-gold/15 text-gold font-bold text-xs">
                         {user.full_name.slice(0, 2).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>

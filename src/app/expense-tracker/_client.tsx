@@ -51,7 +51,7 @@ export default function ExpenseTrackerClient({ user, initialExpenses, categories
     defaultValues: {
       category_id: "",
       amount: 0,
-      currency: "AED",
+      currency: "LKR",
       description: "",
       receipt_url: "",
       transaction_date: new Date().toISOString().split("T")[0],
@@ -236,7 +236,7 @@ export default function ExpenseTrackerClient({ user, initialExpenses, categories
                       />
                     </div>
                     <div className="space-y-1">
-                      <Label htmlFor="catBudget" className="text-xs font-semibold">Budget Limit (AED)</Label>
+                      <Label htmlFor="catBudget" className="text-xs font-semibold">Budget Limit (LKR)</Label>
                       <Input
                         id="catBudget"
                         type="number"
@@ -317,7 +317,7 @@ export default function ExpenseTrackerClient({ user, initialExpenses, categories
                       <Label htmlFor="currency" className="text-xs font-semibold">Currency</Label>
                       <Input
                         id="currency"
-                        value="AED"
+                        value="LKR"
                         readOnly
                         {...register("currency")}
                         className="rounded-xl bg-surface/40 text-muted-foreground cursor-not-allowed"
@@ -450,7 +450,7 @@ export default function ExpenseTrackerClient({ user, initialExpenses, categories
                   {filteredExpenses.map((exp) => (
                     <TableRow key={exp.id} className="hover:bg-surface/10 transition-colors">
                       <TableCell className="text-xs font-medium text-foreground/80">
-                        {new Date(exp.transaction_date).toLocaleDateString("en-AE", {
+                        {new Date(exp.transaction_date).toLocaleDateString("en-LK", {
                           day: "numeric",
                           month: "short",
                           year: "numeric",
@@ -483,7 +483,7 @@ export default function ExpenseTrackerClient({ user, initialExpenses, categories
                         )}
                       </TableCell>
                       <TableCell className="font-bold text-foreground text-xs">
-                        {exp.amount.toLocaleString("en-AE", {
+                        {exp.amount.toLocaleString("en-LK", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}{" "}
@@ -493,10 +493,10 @@ export default function ExpenseTrackerClient({ user, initialExpenses, categories
                         <Badge
                           className={
                             exp.status === "approved"
-                              ? "bg-green-50 text-green-600 border-green-200"
+                              ? "bg-green-500/10 text-green-500 border-green-500/20"
                               : exp.status === "rejected"
-                              ? "bg-red-50 text-red-600 border-red-200"
-                              : "bg-gold-50 text-gold border-gold/20"
+                              ? "bg-red-500/10 text-red-500 border-red-500/20"
+                              : "bg-gold/15 text-gold border-gold/30"
                           }
                           variant="outline"
                         >

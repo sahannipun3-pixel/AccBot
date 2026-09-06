@@ -54,12 +54,12 @@ export default async function PublicBlogPostPage({ params }: Props) {
         <div className="space-y-4">
           <Badge
             variant="outline"
-            className="bg-gold-50 text-gold border-gold/20 text-xs font-bold tracking-wider px-3 py-1"
+            className="bg-gold/15 text-gold border-gold/30 text-xs font-bold tracking-wider px-3 py-1"
           >
             Advisory &amp; Insights
           </Badge>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-dark leading-tight tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-foreground leading-tight tracking-tight">
             {post.title}
           </h1>
 
@@ -68,7 +68,7 @@ export default async function PublicBlogPostPage({ params }: Props) {
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-4 w-4 text-gold" />
                 Published on{" "}
-                {new Date(post.published_at).toLocaleDateString("en-AE", {
+                {new Date(post.published_at).toLocaleDateString("en-LK", {
                   day: "numeric",
                   month: "long",
                   year: "numeric",

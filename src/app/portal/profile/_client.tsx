@@ -141,7 +141,7 @@ export default function PortalProfileClient({ user: initialUser }: Props) {
   const roleLabel =
     user.role === "super_admin" ? "Super Admin" : user.role === "admin" ? "Admin" : "Client";
 
-  const memberSince = new Date(user.created_at).toLocaleDateString("en-AE", {
+  const memberSince = new Date(user.created_at).toLocaleDateString("en-LK", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -166,7 +166,7 @@ export default function PortalProfileClient({ user: initialUser }: Props) {
             <div className="relative w-fit mx-auto mb-4">
               <Avatar className="h-24 w-24 border-2 border-gold/30 shadow-lg">
                 {avatarUrl && <AvatarImage src={avatarUrl} alt={user.full_name} />}
-                <AvatarFallback className="bg-gold-50 text-gold text-2xl font-bold">
+                <AvatarFallback className="bg-gold/15 text-gold text-2xl font-bold">
                   {initials}
                 </AvatarFallback>
               </Avatar>
@@ -302,7 +302,7 @@ export default function PortalProfileClient({ user: initialUser }: Props) {
                   <Input
                     id="portal-phone"
                     {...register("phone")}
-                    placeholder="+971 50 000 0000"
+                    placeholder="+94 77 000 0000"
                     className="pl-10 bg-surface/50 border-border/80 rounded-xl"
                   />
                 </div>

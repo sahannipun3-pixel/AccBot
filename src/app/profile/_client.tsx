@@ -83,10 +83,10 @@ export default function ProfileClient({ user }: Props) {
   const roleLabel = user.role === "super_admin" ? "Super Admin" : user.role === "admin" ? "Admin" : "User";
   const roleBadgeClass =
     user.role === "super_admin"
-      ? "bg-red-50 text-red-600 border-red-200"
+      ? "bg-red-500/10 text-red-500 border-red-500/20"
       : user.role === "admin"
-      ? "bg-gold-50 text-gold border-gold/20"
-      : "bg-surface text-dark-800 border-border";
+      ? "bg-gold/15 text-gold border-gold/30"
+      : "bg-surface text-foreground border-border";
 
   return (
     <div className="section-padding bg-background min-h-[85vh]">
@@ -110,7 +110,7 @@ export default function ProfileClient({ user }: Props) {
                 <Link href="/admin" className="w-full block mt-4">
                   <Button
                     variant="outline"
-                    className="w-full flex items-center justify-between group border-gold/30 hover:border-gold hover:bg-gold-50"
+                    className="w-full flex items-center justify-between group border-gold/30 hover:border-gold hover:bg-gold/10"
                   >
                     <span className="flex items-center gap-2">
                       <Shield className="h-4 w-4 text-gold" />
@@ -192,13 +192,13 @@ export default function ProfileClient({ user }: Props) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="space-y-1.5 text-left">
-                      <Label htmlFor="phone" className="text-xs font-semibold text-dark-800">Phone Number</Label>
+                      <Label htmlFor="phone" className="text-xs font-semibold text-foreground">Phone Number</Label>
                       <div className="relative">
                         <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <Input
                           id="phone"
                           {...register("phone")}
-                          placeholder="+971 50 000 0000"
+                          placeholder="+94 77 000 0000"
                           className="pl-10 bg-surface/50 border-border/80 rounded-xl"
                         />
                       </div>
@@ -214,7 +214,7 @@ export default function ProfileClient({ user }: Props) {
                     >
                       {isSubmitting ? (
                         <>
-                          <span className="animate-spin rounded-full h-4 w-4 border-2 border-dark border-t-transparent" />
+                          <span className="animate-spin rounded-full h-4 w-4 border-2 border-current border-t-transparent" />
                           <span>Saving...</span>
                         </>
                       ) : (
