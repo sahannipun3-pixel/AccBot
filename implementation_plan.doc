@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Accbot - Implementation Plan</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    color: #1E293B;
+    margin: 40px;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #85581A; /* Gold primary */
+    font-family: 'Segoe UI Semibold', 'Georgia', serif;
+    font-size: 20pt;
+    border-bottom: 2px solid #85581A;
+    padding-bottom: 5px;
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-before: always;
+  }
+  h1.first {
+    page-break-before: avoid;
+  }
+  h2 {
+    color: #0F172A; /* Dark secondary */
+    font-family: 'Segoe UI Semibold', Arial, sans-serif;
+    font-size: 14pt;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 3px;
+  }
+  h3 {
+    color: #1E293B;
+    font-family: 'Segoe UI Semibold', Arial, sans-serif;
+    font-size: 11.5pt;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+  }
+  p {
+    margin-bottom: 10pt;
+    text-align: justify;
+  }
+  ul, ol {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    padding-left: 20pt;
+  }
+  li {
+    margin-bottom: 4pt;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 12pt;
+    margin-bottom: 12pt;
+  }
+  th {
+    background-color: #0F172A;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #CBD5E1;
+    font-size: 9.5pt;
+  }
+  td {
+    padding: 8px 12px;
+    border: 1px solid #CBD5E1;
+    font-size: 9.5pt;
+  }
+  tr:nth-child(even) {
+    background-color: #F8FAFC;
+  }
+  .highlight {
+    background-color: #F1F5F9;
+    color: #B45309;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+  }
+  .code-block {
+    background-color: #F8FAFC;
+    border-left: 4px solid #85581A;
+    padding: 10px 15px;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+    white-space: pre-wrap;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+  }
+  .note {
+    background-color: #EFF6FF;
+    border-left: 4px solid #3B82F6;
+    padding: 12px 15px;
+    margin-top: 12pt;
+    margin-bottom: 12pt;
+  }
+  .note-title {
+    font-weight: bold;
+    color: #1E3A8A;
+    margin-bottom: 4px;
+  }
+  .warning {
+    background-color: #FFFBEB;
+    border-left: 4px solid #F59E0B;
+    padding: 12px 15px;
+    margin-top: 12pt;
+    margin-bottom: 12pt;
+  }
+  .warning-title {
+    font-weight: bold;
+    color: #78350F;
+    margin-bottom: 4px;
+  }
+  .title-page {
+    text-align: center;
+    padding: 60px 40px;
+    border: 3px double #85581A;
+    margin-bottom: 40px;
+  }
+  .title-page h1 {
+    font-size: 28pt;
+    color: #0F172A;
+    border-bottom: none;
+    margin-top: 0;
+    page-break-before: avoid;
+  }
+  .title-page h2 {
+    font-size: 16pt;
+    color: #85581A;
+    border-bottom: none;
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  .title-page p {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #64748B;
+  }
+  .footer {
+    margin-top: 30pt;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 10px;
+    font-size: 8.5pt;
+    color: #64748B;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-page">
+  <h1>ACCBOT WEB SYSTEM</h1>
+  <h2>Comprehensive System Implementation Plan</h2>
+  <br><br><br>
+  <p><strong>Prepared For:</strong> Board of Directors & Management</p>
+  <p><strong>Subject:</strong> Technical Architecture, Implementation Progress, and Product Roadmap</p>
+  <p><strong>Author:</strong> Technical Architecture Team</p>
+  <p><strong>Version:</strong> 1.0 (Production Blueprint)</p>
+  <p><strong>Date:</strong> July 4, 2026</p>
+</div>
+
+<h1 class="first">1. Executive Summary</h1>
+<p>The Accbot web application is a premium digital portal designed to streamline accounting, bookkeeping, auditing, company formation, and tax compliance services. Developed with high-integrity design patterns, the portal acts as a client dashboard and administrative gateway. The application is built upon Next.js 16 (React 19) and integrates with Supabase for authentication, relational storage, and security management. This document provides a complete technical review of the current implementation, outlines architectural decisions, documents the folder structure, reviews API structures, and details the roadmap to take the system to full production deployment.</p>
+
+<h2>Project Objectives</h2>
+<ul>
+  <li>Provide a beautiful, responsive, and intuitive interface for corporate financial services.</li>
+  <li>Hardcode static informational segments to ensure instant initial load times and high SEO scores.</li>
+  <li>Facilitate client onboarding through contact forms and secure portal registrations.</li>
+  <li>Build an administrative dashboard that allows managers to review messages, edit catalogs, and configure site settings.</li>
+  <li>Integrate transactional helper sub-modules (Expense Tracker and Accounts Web) directly into the client workspace.</li>
+</ul>
+
+<h1>2. Current Development Progress</h1>
+<p>The system is currently estimated to be <strong>55% complete</strong>. The application features a fully responsive frontend, database schema definitions, and server-side authentication functions. However, dynamic data synchronization on the user profile and administrative views is currently mocked.</p>
+
+<h2>Features Completed</h2>
+<ul>
+  <li><strong>Core Landing & Home Pages:</strong> Fully styled, featuring smooth section fades via Framer Motion, key metric trackers, client testimonials, and descriptive process boards.</li>
+  <li><strong>Services Catalog:</strong> Dynamically routed structure mapping services loaded from static constants (<span class="highlight">constants.ts</span>) to static slugs (/services/[slug]) using Next.js <span class="highlight">generateStaticParams</span>.</li>
+  <li><strong>Validated Contact Gateway:</strong> Secure inquiry forms with form resolver validation rules and direct database writes to the <span class="highlight">contact_messages</span> table.</li>
+  <li><strong>Authentication Middleware & Actions:</strong> Middleware route checking, cookie updates, and GoTrue Server Actions (login, register, signout, forgot password, reset password) are fully configured.</li>
+  <li><strong>Database Scheme & Seeding:</strong> Fully defined relational schemas including Row Level Security (RLS) tables, triggers, user functions, and structured seeds file.</li>
+</ul>
+
+<h2>Features in Progress</h2>
+<ul>
+  <li>Navbar session tracking integration (binding the client-rendered navbar to check session states from Server Component properties).</li>
+  <li>Connecting user profile edit forms to write directly to the database via Server Actions instead of mock promise delays.</li>
+</ul>
+
+<h2>Remaining Features to be Developed (Roadmap)</h2>
+<ul>
+  <li><strong>Admin Panel Dynamic CRUD:</strong> Connect the User Accounts, Services visibilities, Website Configurations, and Messages panels to interact with the database tables instead of local mock arrays.</li>
+  <li><strong>Expense Tracker Sub-Module:</strong> Build the database table structure, write server actions to log expenses, create receipts storage folders, configure security policies, and hook up the frontend interface.</li>
+  <li><strong>Accounts Web Sub-Module:</strong> Build double-entry bookkeeping ledger tables (accounts, transactions, journal entries), set up accounting views (trial balance, P&L, balance sheet), and build the balance review dashboard.</li>
+  <li><strong>SMTP Server Configurations:</strong> Connect professional email delivery SDKs (e.g. Resend) to route password resets and signup confirmations.</li>
+  <li><strong>Third-party OAuth:</strong> Wire up click handlers to trigger Google Account authentication via Supabase Auth.</li>
+</ul>
+
+<h1>3. System Architecture & Tech Stack</h1>
+<p>The application is built on a modern, decoupled serverless model that emphasizes fast loading times, type safety, and database security.</p>
+
+<div class="code-block">
++---------------------+      Next.js Server Actions      +-------------------------+
+|   React 19 Client   | ===============================> |  Next.js Server Actions |
+| (Tailwind CSS v4,   | <=============================== |  (Zod Form Validation)  |
+|   Framer Motion)    |      HTTP Cookies Session        +-------------------------+
++---------------------+                                               ||
+           ^                                                          ||
+           | Middleware Session Refresh                               || postgrest
+           v                                                          v
++---------------------+                                  +-------------------------+
+| Next.js Middleware  |                                  |      Supabase API       |
+|  (SSR Cookie Sync)  |                                  |   (PostgreSQL Database) |
++---------------------+                                  +-------------------------+
+</div>
+
+<h3>Frontend Technology</h3>
+<ul>
+  <li><strong>React 19 & Next.js 16 (App Router):</strong> Leverages Server-Side Rendering (SSR) for initial loads and Client Components for interactive states.</li>
+  <li><strong>Tailwind CSS v4:</strong> Custom styling structure, using CSS custom variables for dark/gold branding aesthetics.</li>
+  <li><strong>Framer Motion:</strong> Implements smooth micro-animations and layout transitions.</li>
+  <li><strong>Lucide React:</strong> Standard vector icon library.</li>
+</ul>
+
+<h3>Backend Technology</h3>
+<ul>
+  <li><strong>Next.js Server Actions:</strong> All backend requests are executed via secure, typed asynchronous functions marked with the <span class="highlight">"use server"</span> directive, removing the need for conventional REST controllers.</li>
+  <li><strong>Next.js Edge Middleware:</strong> Intercepts route requests to perform security checks, cookie verification, and redirect flows before rendering pages.</li>
+</ul>
+
+<h3>Database & Third-Party Services</h3>
+<ul>
+  <li><strong>PostgreSQL (Supabase Host):</strong> Handles relational data, Row Level Security (RLS) policies, database triggers, and function checks.</li>
+  <li><strong>Supabase Auth:</strong> Manages session tokens, password hashing, and user account verification.</li>
+  <li><strong>Hosting/Deployment:</strong> Intended for Vercel (frontend and Server Actions execution) paired with Supabase Cloud (database storage).</li>
+</ul>
+
+<h1>4. Folder Structure & Major Directories</h1>
+<p>The project follows a standard Next.js directory tree optimized for page nesting and clean separations of concern.</p>
+
+<div class="code-block">
+accbots/
+├── supabase/                    # Supabase SQL assets
+│   ├── schema.sql               # Database table schemas & RLS policies
+│   └── seed.sql                 # Seeding scripts for initial database records
+└── src/
+    ├── actions/                 # Next.js Server Actions (Backend Operations)
+    │   ├── auth.ts              # Login, registration, password resets
+    │   └── contact.ts           # Contact messages submission
+    ├── app/                     # Next.js App Router (Pages, Layouts, CSS)
+    │   ├── admin/               # Administrative panel sub-pages & layouts
+    │   ├── services/            # Services lists and dynamic detail pages
+    │   ├── profile/             # User profiles configurations
+    │   ├── expense-tracker/     # Expense tracker portal placeholder
+    │   ├── accounts-web/        # Accounts web bookkeeping placeholder
+    │   ├── globals.css          # Tailwind CSS global styles
+    │   ├── layout.tsx           # Global HTML document wrapper
+    │   └── page.tsx             # Public landing page controller
+    ├── components/              # Reusable React components
+    │   ├── home/                # Page sections for the landing dashboard
+    │   ├── layout/              # Navbar, Footer, and Logo widgets
+    │   ├── shared/              # Reusable Section Headers
+    │   └── ui/                  # Atomic components (Buttons, inputs, tables)
+    ├── lib/                     # System helper functions & configurations
+    │   ├── supabase/            # Client, server, and middleware Supabase wrappers
+    │   ├── constants.ts         # Company metadata and hardcoded details
+    │   ├── utils.ts             # Tailwind class merges and animations helpers
+    │   └── validators.ts        # Zod input schemas definition
+    └── types/                   # TypeScript interfaces matching DB models
+</div>
+
+<h1>5. Module-by-Module Explanation</h1>
+
+<h3>Authentication Gateway</h3>
+<p>Located in <span class="highlight">src/app/(auth)/</span> paths (login, signup, forgot-password, reset-password). It uses Zod schemas from <span class="highlight">lib/validators.ts</span> to validate form inputs client-side, showing instant errors. When valid, it calls Supabase Auth server actions in <span class="highlight">actions/auth.ts</span> to sign in or register users, saving session tokens to cookies.</p>
+
+<h3>Admin Control Panel</h3>
+<p>Located in <span class="highlight">src/app/admin/</span>. Features a custom dashboard layout with a left sidebar navigation. Panels include:
+  <ul>
+    <li><strong>Dashboard (page.tsx):</strong> Displays mock grid cards showing registered users, services, messages counts, and a chronological timeline of mock activities.</li>
+    <li><strong>Users (users/page.tsx):</strong> Table listing user profiles, allowing administrators to simulate role promotions or access suspensions.</li>
+    <li><strong>Services (services/page.tsx):</strong> Service visibility table, providing options to toggle public visibility of services and edit slugs or descriptions.</li>
+    <li><strong>Messages (messages/page.tsx):</strong> Inbox reader displaying client inquiries, sorting by unread status, and supporting delete commands.</li>
+    <li><strong>Settings (settings/page.tsx):</strong> Tabs panel to configure metadata key-value items (general titles, email support links, WhatsApp tags, custom hosting domains).</li>
+  </ul>
+</p>
+
+<h3>Expense Tracker & Accounts Web (Coming Soon)</h3>
+<p>Located in <span class="highlight">src/app/expense-tracker/</span> and <span class="highlight">src/app/accounts-web/</span>. Currently implemented as interactive placeholder pages. They explain the upcoming module scope (OCR receipt scanning, manager approvals flow, trial balance reconciliation, multi-currency journal splits) and include email capture forms to notify interested clients on launch.</p>
+
+<h1>6. API Structure & Server Actions</h1>
+<p>The system uses Next.js Server Actions instead of classic REST endpoints. Below is a detailed mapping of the action signatures:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Action Signature</th>
+      <th>Location</th>
+      <th>Payload Type</th>
+      <th>Response Type</th>
+      <th>Access Tier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>signInWithEmail(data)</td>
+      <td>actions/auth.ts</td>
+      <td>LoginFormData</td>
+      <td>{ success: boolean, error?: string }</td>
+      <td>Public</td>
+    </tr>
+    <tr>
+      <td>signUpWithEmail(data)</td>
+      <td>actions/auth.ts</td>
+      <td>SignupFormData</td>
+      <td>{ success: boolean, error?: string }</td>
+      <td>Public</td>
+    </tr>
+    <tr>
+      <td>signOutUser()</td>
+      <td>actions/auth.ts</td>
+      <td>None</td>
+      <td>Redirect to /login</td>
+      <td>User / Admin</td>
+    </tr>
+    <tr>
+      <td>sendPasswordReset(data)</td>
+      <td>actions/auth.ts</td>
+      <td>ForgotPasswordFormData</td>
+      <td>{ success: boolean, error?: string }</td>
+      <td>Public</td>
+    </tr>
+    <tr>
+      <td>updateUserPassword(data)</td>
+      <td>actions/auth.ts</td>
+      <td>ResetPasswordFormData</td>
+      <td>{ success: boolean, error?: string }</td>
+      <td>User / Admin</td>
+    </tr>
+    <tr>
+      <td>submitContactForm(formData)</td>
+      <td>actions/contact.ts</td>
+      <td>ContactFormData</td>
+      <td>{ success: boolean, error?: string }</td>
+      <td>Public</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>7. Known Issues & Technical Debt</h1>
+<div class="warning">
+  <div class="warning-title">Security & Integrity Hazards</div>
+  <p>The following items represent technical debt that must be addressed before the platform is considered production-ready:</p>
+</div>
+<ul>
+  <li><strong>Unsecured Admin Routes:</strong> The Next.js middleware restricts access to <span class="highlight">/admin</span> to authenticated users, but it does not check if the user has an admin role. Any logged-in user can visit the admin section.</li>
+  <li><strong>Disconnected Navbar:</strong> The navigation header does not automatically check session cookies on mount, meaning it will always show "Login" and "Get Started" buttons even if the user is authenticated.</li>
+  <li><strong>Mock Admin Panels:</strong> Edit actions for settings, service visibilities, user roles, and messages do not query the database; they operate on local state and reset on page refresh.</li>
+  <li><strong>Storage Bucket Access:</strong> The profile page contains form uploads for avatars, but the files are not uploaded to Supabase Storage.</li>
+</ul>
+
+<h1>8. Deployment & Run Instructions</h1>
+
+<h3>Local Development Setup</h3>
+<ol>
+  <li>Clone the project repository and navigate to the project directory.</li>
+  <li>Create a local configuration file named <span class="highlight">.env.local</span> in the root folder, adding:
+    <div class="code-block">
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+    </div>
+  </li>
+  <li>Install dependencies and start the local development server:
+    <div class="code-block">
+pnpm install
+pnpm dev
+    </div>
+  </li>
+</ol>
+
+<h3>Production Deployment Checklist</h3>
+<ul>
+  <li>Apply the database schema (<span class="highlight">supabase/schema.sql</span>) and seeds (<span class="highlight">supabase/seed.sql</span>) directly inside the Supabase project dashboard.</li>
+  <li>Configure custom SMTP credentials (e.g. Resend, Sendgrid) in the Supabase Authentication settings to manage reset and verification emails.</li>
+  <li>Create a public storage bucket named <span class="highlight">avatars</span> and a private storage bucket named <span class="highlight">receipts</span> in Supabase. Configure the storage RLS policies.</li>
+  <li>Link the repository to Vercel, copy the environment variables, and run the production build.</li>
+</ul>
+
+<div class="footer">
+  <p>© 2026 Accbot Website Project. All Rights Reserved. Prepared for Management Review.</p>
+</div>
+</body>
+</html>

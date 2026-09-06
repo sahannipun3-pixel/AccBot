@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Accbot - Comprehensive Project Documentation</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    color: #1E293B;
+    margin: 40px;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #85581A; /* Gold primary */
+    font-family: 'Segoe UI Semibold', 'Georgia', serif;
+    font-size: 18pt;
+    border-bottom: 2px solid #85581A;
+    padding-bottom: 5px;
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-before: always;
+  }
+  h1.first {
+    page-break-before: avoid;
+  }
+  h2 {
+    color: #0F172A; /* Dark secondary */
+    font-family: 'Segoe UI Semibold', Arial, sans-serif;
+    font-size: 14pt;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 3px;
+  }
+  h3 {
+    color: #1E293B;
+    font-family: 'Segoe UI Semibold', Arial, sans-serif;
+    font-size: 11.5pt;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+  }
+  p {
+    margin-bottom: 10pt;
+    text-align: justify;
+  }
+  ul, ol {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    padding-left: 20pt;
+  }
+  li {
+    margin-bottom: 4pt;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10pt;
+    margin-bottom: 15pt;
+    font-size: 9.5pt;
+  }
+  th {
+    background-color: #F8FAFC;
+    border: 1px solid #CBD5E1;
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+    color: #0F172A;
+  }
+  td {
+    border: 1px solid #CBD5E1;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #F8FAFC;
+  }
+  pre {
+    background-color: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    padding: 10px;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 9pt;
+    margin-bottom: 12pt;
+    white-space: pre-wrap;
+  }
+  code {
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 9.5pt;
+    background-color: #F1F5F9;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+  .note {
+    background-color: #FFFBEB;
+    border-left: 4px solid #F59E0B;
+    padding: 10px;
+    margin-bottom: 12pt;
+    font-size: 10pt;
+  }
+  .warning {
+    background-color: #FEF2F2;
+    border-left: 4px solid #EF4444;
+    padding: 10px;
+    margin-bottom: 12pt;
+    font-size: 10pt;
+  }
+  .diagram-box {
+    background-color: #F8FAFC;
+    border: 1px dashed #94A3B8;
+    padding: 12px;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 9pt;
+    line-height: 1.3;
+    margin-bottom: 12pt;
+  }
+</style>
+</head>
+<body>
+
+<div style="text-align: center; margin-top: 50px; margin-bottom: 100px;">
+  <h1 class="first" style="font-size: 28pt; color: #85581A; border-bottom: none; margin-bottom: 5px;">ACCBOT PORTAL</h1>
+  <p style="font-size: 14pt; color: #64748B; margin-top: 0;">Comprehensive Technical & Architecture Documentation</p>
+  <div style="margin-top: 150px; font-size: 11pt; color: #475569;">
+    <p><strong>Version:</strong> 1.0.0</p>
+    <p><strong>Date:</strong> July 5, 2026</p>
+    <p><strong>Environment:</strong> Development & Railway Production</p>
+    <p><strong>Target Audience:</strong> Developers, System Administrators, & Stakeholders</p>
+  </div>
+</div>
+
+<h1>1. Project Overview</h1>
+<h2>Purpose of the Website</h2>
+<p>
+  Accbot is a premium web portal designed for businesses operating in Dubai and the wider UAE. It provides high-end accounting, VAT advisory, tax filing, corporate bookkeeping, and company formation services. In addition to marketing services, the portal offers integrated tools like an <strong>Expense Tracker</strong> and <strong>Accounts Web</strong> dashboard to help registered clients manage corporate receipts, track compliance parameters, and review ledger structures in real-time.
+</p>
+<h2>Main Features</h2>
+<ul>
+  <li><strong>Services Exploration & Detailed Pages:</strong> Interactive pages describing FTA-compliant auditing, bookkeeping, VAT management, and company registration.</li>
+  <li><strong>Authentication & Security:</strong> Robust email/password signup and login, integrated with Google OAuth 2.0 Sign-In, secured by custom JWT (JSON Web Tokens) stored in HttpOnly, Secure cookies.</li>
+  <li><strong>User Profile Settings:</strong> Centralized dashboard for clients to manage contact details and profiles.</li>
+  <li><strong>Expense Tracker & Accounts Web:</strong> Integrated utility platforms allowing corporate users to keep records of financial operations.</li>
+  <li><strong>Administrative Control Panel:</strong> Complete admin interface for staff to inspect website metrics, handle contact inquiry messages, configure settings, and monitor user accounts.</li>
+  <li><strong>Activity Logging:</strong> Audit logs tracking critical modifications, roles, and administrative interventions.</li>
+</ul>
+<h2>Overall Workflow</h2>
+<p>
+  A guest user visits the homepage, browsing UAE compliance articles, services, and testimonials. They submit contact requests, which are recorded in the database. When they register an account, an entry is created in Supabase Auth and a database trigger immediately provisions a corresponding client profile in the public database. Upon logging in, the user receives HttpOnly JWT cookies representing their active session. They can update profile information and browse client modules (Expense Tracker, Accounts Web). Administrative roles can access guarded routes under <code>/admin</code> to audit messages, logs, and services.
+</p>
+
+<h1>2. Current Progress</h1>
+<h2>What Has Been Completed So Far</h2>
+<ul>
+  <li><strong>Technical Core:</strong> Configured Next.js 16 App Router environment with TypeScript and Tailwind CSS v4 styling systems.</li>
+  <li><strong>Custom JWT Authentication Utility:</strong> Written <code>src/lib/jwt.ts</code> wrapping the <code>jose</code> library to securely sign and verify access tokens (15m expiry) and refresh tokens (7d/30d expiry) using a secure 256-bit key.</li>
+  <li><strong>Cookie Management:</strong> Formulated <code>src/lib/auth-cookies.ts</code> to configure secure cookie parameters (HttpOnly, Lax, Secure) to protect user credentials against Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF).</li>
+  <li><strong>Auth API Endpoint Implementations:</strong> Deployed <code>GET /api/auth/token</code> (exchanging Supabase sessions for JWTs), <code>POST /api/auth/refresh</code> (handling silent token rotation), and <code>POST /api/auth/signout</code> (clearing cookies).</li>
+  <li><strong>Google Sign-In Integration:</strong> Integrated Google OAuth 2.0 client redirection and callback handling in <code>src/actions/auth.ts</code> and <code>src/app/auth/callback/route.ts</code> to support Google Identity logins.</li>
+  <li><strong>Protected Middleware:</strong> Configured <code>src/middleware.ts</code> to inspect session statuses, invoke JWT decoders, and handle access redirection for all protected application routes.</li>
+  <li><strong>Database Schemas & Tables:</strong> Configured complete schema file (<code>supabase/schema.sql</code>) containing specifications for profiles, settings, services, logs, and refresh token tables.</li>
+  <li><strong>Admin Portal Layout & Interface:</strong> Implemented admin layouts with sections for user reviews, incoming messages, and administrative parameters.</li>
+</ul>
+
+<h2>Feature Implementation Status</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Feature Area</th>
+      <th>Status</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Next.js Project Setup & Layout</td>
+      <td><strong>Fully Implemented</strong></td>
+      <td>Tailwind CSS v4 and typography fully configured.</td>
+    </tr>
+    <tr>
+      <td>Custom JWT Signing & Verify</td>
+      <td><strong>Fully Implemented</strong></td>
+      <td>Utilizes <code>jose</code>, token expiry, and cookie set/clear logic.</td>
+    </tr>
+    <tr>
+      <td>Google Sign-In Integration</td>
+      <td><strong>Fully Implemented</strong></td>
+      <td>Google OAuth client flows and callback routers wired.</td>
+    </tr>
+    <tr>
+      <td>Authentication Redirection Middleware</td>
+      <td><strong>Fully Implemented</strong></td>
+      <td>Protects profiles, admin sections, and financial applications.</td>
+    </tr>
+    <tr>
+      <td>Database Schema Definition</td>
+      <td><strong>Fully Implemented</strong></td>
+      <td>All tables, triggers, and indices defined in SQL.</td>
+    </tr>
+    <tr>
+      <td>Contact Inquiries Forms</td>
+      <td><strong>Fully Implemented</strong></td>
+      <td>Validates via Zod and submits to Supabase database.</td>
+    </tr>
+    <tr>
+      <td>User Settings & Profile Page</td>
+      <td><strong>Partially Implemented</strong></td>
+      <td>Form UI is built; profile saving currently uses mocked delays. Needs connection to real database update action.</td>
+    </tr>
+    <tr>
+      <td>Admin Pages (Dashboard & Inquiries)</td>
+      <td><strong>Partially Implemented</strong></td>
+      <td>Admin layouts and tables are completed; currently relies on mock arrays. Needs direct queries to database tables.</td>
+    </tr>
+    <tr>
+      <td>Expense Tracker UI & Web Portal</td>
+      <td><strong>Partially Implemented</strong></td>
+      <td>Currently holds "Coming Soon" notification signup visualizer. Core ledger features are pending.</td>
+    </tr>
+    <tr>
+      <td>Accounts Web Portal</td>
+      <td><strong>Partially Implemented</strong></td>
+      <td>Mocked coming-soon landing page with automated notifications setup.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>3. Remaining Work</h1>
+<h2>Required Implementations for Production-Ready Status</h2>
+<ol>
+  <li><strong>Wire Profile Settings to Backend:</strong> Create a server action inside <code>src/actions/auth.ts</code> (e.g., <code>updateUserProfile</code>) to write user changes (names, phone numbers, avatar urls) directly into the Supabase <code>profiles</code> table, replacing the mocked delay.</li>
+  <li><strong>Admin Dashboard Dynamic Data:</strong> Modify <code>src/app/admin/page.tsx</code> and <code>src/app/admin/messages/page.tsx</code> to read direct data from the database using Server Components or Server Actions instead of mock arrays.</li>
+  <li><strong>Dynamic Service & Testimonial Loading:</strong> Bind website frontend cards (e.g. <code>src/components/home/services.tsx</code>) to load from the Supabase <code>services</code> table so settings changes automatically cascade.</li>
+  <li><strong>Complete Expense Tracker Application:</strong> Implement ledger forms, transaction input fields, category classifications, and dashboard views for the Expense Tracker.</li>
+  <li><strong>Complete Accounts Web Portal:</strong> Construct company accounts dashboards, PDF export capabilities, and balance sheets tables.</li>
+  <li><strong>Google OAuth Console Verification:</strong> Register the production Railway URL inside the Google Cloud Console and complete domain verification.</li>
+  <li><strong>Railway Environment Variable Configuration:</strong> Store credentials safely on Railway settings.</li>
+</ol>
+
+<h2>Prioritized Task Roadmap</h2>
+<div class="diagram-box">
+Phase 1: Database Bindings (High Priority)
+  ├── 1. Implement profile update server action and link to UI form
+  ├── 2. Fetch admin messages directly from `contact_messages` table
+  └── 3. Bind homepage services grid to read from public.services table
+
+Phase 2: Core Applications (Medium Priority)
+  ├── 1. Build database tables for corporate transactions and balances
+  ├── 2. Implement backend actions for expenses CRUD operations
+  └── 3. Create interactive client charts and expense ledger views
+
+Phase 3: Deploy & Compliance (Low Priority)
+  ├── 1. Link Google Cloud Console OAuth to Railway production URL
+  ├── 2. Perform production build checks and lighthouse audits
+  └── 3. Finalize Row-Level Security policies on database production
+</div>
+
+<h1>4. Technology Stack</h1>
+<ul>
+  <li><strong>Frontend:</strong> Next.js 16 (App Router structure), React 19, TypeScript for static typing, Tailwind CSS v4 for UI layouts, Framer Motion for micro-animations, Lucide React for consistent vector symbols, Shadcn UI (radix primitives) for accessible components.</li>
+  <li><strong>Backend:</strong> Next.js Server Actions (secures mutations without explicit API boilerplate), Next.js Route Handlers (REST api routing for auth tokens and signouts).</li>
+  <li><strong>Database & Real-time:</strong> Supabase PostgreSQL. RLS (Row-Level Security) acts as the data firewall, filtering queries based on user context. Database triggers automate public profiles synchronization.</li>
+  <li><strong>Authentication:</strong> Custom JWT tokens (using HS256 algorithm via <code>jose</code>) stored as secure, HttpOnly cookies for protection against token theft. Google Cloud OAuth 2.0 integration via Google Identity APIs.</li>
+  <li><strong>Hosting & Server Architecture:</strong> Hosted on Railway. Environment variable vault holds all database links and secret keys.</li>
+</ul>
+
+<h1>5. Project Architecture</h1>
+<h2>High-Level Architecture</h2>
+<div class="diagram-box">
++-------------------------------------------------------------------------+
+|                              User Browser                               |
+|   +-------------------+  +-----------------------+  +---------------+   |
+|   | Client Components |  |   Server Components   |  | HTML / Assets |   |
+|   +---------+---------+  +-----------+-----------+  +-------+-------+   |
++-------------|------------------------|----------------------|-----------+
+              | Form Submission        | Hydrated Page Load   | Static Assets
+              v                        v                      v
++-------------------------------------------------------------------------+
+|                        Next.js Web Server (Edge)                        |
+|                                                                         |
+|            +-----------------------------------------------+            |
+|            | Middleware (Auth Cookie Check & Redirection)  |            |
+|            +-----------------------+-----------------------+            |
+|                                    |                                    |
+|       +----------------------------+----------------------------+       |
+|       |                                                         |       |
+|       v                                                         v       |
+|  +----+------------------------+                         +------+----+  |
+|  | Server Actions & API Routes |                         | Pages &   |  |
+|  | (signIn, refresh, signout)  |                         | Layouts   |  |
+|  +----+------------------------+                         +------+----+  |
++-------|---------------------------------------------------------|-------+
+        | Read/Write DB                                           | Query
+        v                                                         v
++-------------------------------------------------------------------------+
+|                             Supabase Cloud                              |
+|                                                                         |
+|   +--------------------+  +-------------------+  +------------------+   |
+|   |   Supabase Auth    |  |  PostgreSQL DB    |  | RLS System       |   |
+|   | (Google / Email)   |  | (Profiles, Logs)  |  | (Data Firewall)  |   |
+|   +--------------------+  +-------------------+  +------------------+   |
++-------------------------------------------------------------------------+
+</div>
+
+<h2>Communication & Lifecycle Flows</h2>
+<ul>
+  <li><strong>Frontend to Backend Communication:</strong> Client-side events (like form submissions) execute Next.js Server Actions. These actions validate inputs via Zod, perform database transactions with the Supabase client, and set cookie headers.</li>
+  <li><strong>Request/Response Lifecycle:</strong>
+    <ol>
+      <li>Browser requests a page (e.g. <code>/profile</code>).</li>
+      <li><code>middleware.ts</code> runs, intercepting the request. It calls <code>updateSession</code> to keep the Supabase token alive, then extracts and decodes the <code>accbot_access_token</code>.</li>
+      <li>If authenticated, the page is rendered on the server with user details. If expired, it checks the refresh token; if invalid, it redirects the browser to <code>/login?next=/profile</code>.</li>
+      <li>The server returns HTML, which is hydrated on the client.</li>
+    </ol>
+  </li>
+</ul>
+
+<h1>6. Folder Structure</h1>
+<p>Below is a visual layout of the folder architecture and descriptions of crucial files:</p>
+<div class="diagram-box">
+AccBots/
+├── .next/                   # Next.js build cache (ignored in git)
+├── public/                  # Static assets (logos, icons, images)
+├── supabase/                # Database configurations and schemas
+│   ├── schema.sql           # Database schema definition
+│   └── seed.sql             # Mock data seed script
+└── src/                     # Source code directory
+    ├── actions/             # Server Actions (Mutations & Auth triggers)
+    │   ├── auth.ts          # Core authentication actions
+    │   └── contact.ts       # Contact form submissions action
+    ├── app/                 # Next.js App Router (Pages and layouts)
+    │   ├── api/             # API routes (Route Handlers)
+    │   │   └── auth/        # Custom token endpoints (token, refresh, signout)
+    │   ├── auth/            # Auth callbacks (OAuth callback handler)
+    │   ├── admin/           # Administrative portal sub-pages
+    │   ├── profile/         # User settings routing page
+    │   ├── login/           # Login screen page
+    │   ├── signup/          # Registration form screen
+    │   ├── layout.tsx       # Root layout containing providers and navbar
+    │   └── page.tsx         # Website marketing homepage
+    ├── components/          # Reusable React components
+    │   ├── home/            # Home page sections (Hero, Intro, Services)
+    │   ├── layout/          # Common components (Navbar, Footer, Logo)
+    │   └── ui/              # Shadcn primitive elements (buttons, inputs)
+    ├── lib/                 # Core logic libraries & helpers
+    │   ├── auth-cookies.ts  # Secure HttpOnly cookie helpers
+    │   ├── jwt.ts           # custom JWT token sign/verify via jose
+    │   ├── supabase/        # Supabase server/client instance loaders
+    │   └── validators.ts    # Zod payload validation schemas
+    └── types/               # TypeScript definitions
+        └── index.ts         # Global TS interfaces for entities
+</div>
+
+<h1>7. Database Design</h1>
+<h2>PostgreSQL Schema Description</h2>
+<p>
+  The database is hosted on Supabase (PostgreSQL). It contains nine main tables. Row-Level Security (RLS) is enabled on all tables, preventing unauthorized manipulation.
+</p>
+
+<h3>Database Tables Schema Reference</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Table Name</th>
+      <th>Primary Key</th>
+      <th>Relationships / Foreign Keys</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>public.profiles</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>References <code>auth.users(id)</code></td>
+      <td>Stores user profiles. Synchronized automatically via database triggers on registrations.</td>
+    </tr>
+    <tr>
+      <td><code>public.contact_messages</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>None</td>
+      <td>Contains user contact inquiry details.</td>
+    </tr>
+    <tr>
+      <td><code>public.services</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>None</td>
+      <td>Details of services offered (Audit, VAT, Bookkeeping, etc.).</td>
+    </tr>
+    <tr>
+      <td><code>public.testimonials</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>None</td>
+      <td>Client reviews shown on the homepage.</td>
+    </tr>
+    <tr>
+      <td><code>public.refresh_tokens</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>References <code>public.profiles(id)</code></td>
+      <td>Stores hashes of custom JWT refresh tokens to support forced revocation.</td>
+    </tr>
+    <tr>
+      <td><code>public.activity_logs</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>References <code>public.profiles(id)</code></td>
+      <td>Audit logs tracking administrative operations.</td>
+    </tr>
+    <tr>
+      <td><code>public.website_settings</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>None</td>
+      <td>Key-value configurations for SEO, social handles, and general contact details.</td>
+    </tr>
+    <tr>
+      <td><code>public.team_members</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>None</td>
+      <td>Public profiles of UAE bookkeeping consultants.</td>
+    </tr>
+    <tr>
+      <td><code>public.blog_posts</code></td>
+      <td><code>id (uuid)</code></td>
+      <td>References <code>public.profiles(id)</code></td>
+      <td>Educational tax articles.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Row-Level Security & Triggers</h2>
+<p>
+  A trigger function, <code>public.handle_new_user()</code>, executes automatically whenever a record is inserted into Supabase's internal <code>auth.users</code> table. This database trigger populates the public <code>profiles</code> table with the user's name and email:
+</p>
+<pre>
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS trigger AS $$
+BEGIN
+  INSERT INTO public.profiles (id, full_name, email, role, avatar_url)
+  VALUES (
+    new.id,
+    coalesce(new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name', 'New User'),
+    new.email,
+    'user',
+    new.raw_user_meta_data->>'avatar_url'
+  );
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+</pre>
+
+<h1>8. Authentication</h1>
+<h2>JWT Implementation Details</h2>
+<p>
+  Authentication is handled via a dual-token system using the <code>jose</code> library.
+</p>
+<ul>
+  <li><strong>Access Token:</strong> Short-lived (15 minutes), signed using HMAC SHA-256 (HS256). Contains the user's ID, email, and security role.</li>
+  <li><strong>Refresh Token:</strong> Long-lived (7 days by default; 30 days if the "Remember Me" option is selected). Used to silently request new access tokens.</li>
+  <li><strong>Secrets:</strong> Tokens are signed using a secure key (<code>JWT_SECRET</code> env var) that is decoded into a Uint8Array in the runtime.</li>
+</ul>
+
+<h2>Cookie Parameters & Security</h2>
+<p>
+  To prevent theft via Cross-Site Scripting (XSS), tokens are stored in the browser as <code>HttpOnly</code> cookies. These cookies are inaccessible to JavaScript. The cookies are configured with the following flags:
+</p>
+<ul>
+  <li><code>httpOnly: true</code> — protects against XSS scripts.</li>
+  <li><code>sameSite: "lax"</code> — helps prevent CSRF request forgery.</li>
+  <li><code>path: "/"</code> — makes cookies available across the entire application domain.</li>
+  <li><code>secure: true</code> — forces transmission over HTTPS only (enabled automatically in production).</li>
+</ul>
+
+<h2>Detailed Flow Mechanics</h2>
+<h3>Login Flow</h3>
+<div class="diagram-box">
+User inputs credentials
+  ├── 1. React Hook Form validates data via Zod schema (loginSchema)
+  ├── 2. Calls Server Action `signInWithEmail(data)`
+  ├── 3. Action invokes `supabase.auth.signInWithPassword`
+  ├── 4. Action reads client role from profiles database table
+  ├── 5. Action generates custom Access Token (15m) and Refresh Token (7d)
+  ├── 6. Cookies written to response headers
+  └── 7. Next.js router refreshes page and redirects to `/profile`
+</div>
+
+<h3>Google Sign-In Flow</h3>
+<div class="diagram-box">
+User clicks "Google Account"
+  ├── 1. Client calls Server Action `signInWithGoogle()`
+  ├── 2. Action configures Supabase OAuth redirection URL
+  ├── 3. Client redirects to Google Identity Consent Page
+  ├── 4. Google redirects user to `/auth/callback?code=...`
+  ├── 5. Router exchanges auth code for permanent Supabase session
+  ├── 6. Custom JWT Access & Refresh tokens generated and written to cookies
+  └── 7. Router redirects user to requested page (e.g. `/profile`)
+</div>
+
+<h1>9. API Documentation</h1>
+<p>The application defines three custom API endpoints under <code>/api/auth/</code>:</p>
+
+<h2>1. GET /api/auth/token</h2>
+<p>Generates a custom JWT access token based on the active Supabase session.</p>
+<ul>
+  <li><strong>Authentication Required:</strong> Yes (Active Supabase session cookie).</li>
+  <li><strong>Success Response (200 OK):</strong>
+    <pre>{ "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." }</pre>
+  </li>
+  <li><strong>Error Response (401 Unauthorized):</strong>
+    <pre>{ "error": "Unauthorized" }</pre>
+  </li>
+</ul>
+
+<h2>2. POST /api/auth/refresh</h2>
+<p>Validates the refresh token cookie and issues a rotated token pair.</p>
+<ul>
+  <li><strong>Authentication Required:</strong> Yes (Valid <code>accbot_refresh_token</code> cookie).</li>
+  <li><strong>Success Response (200 OK):</strong>
+    <pre>{ "success": true }</pre>
+    <em>Note: Sets updated cookie headers for access and refresh tokens.</em>
+  </li>
+  <li><strong>Error Response (401 Unauthorized):</strong>
+    <pre>{ "error": "Invalid or expired refresh token" }</pre>
+  </li>
+</ul>
+
+<h2>3. POST /api/auth/signout</h2>
+<p>Clears the custom JWT cookies and logs the user out of their Supabase session.</p>
+<ul>
+  <li><strong>Authentication Required:</strong> No.</li>
+  <li><strong>Success Response (200 OK):</strong>
+    <pre>{ "success": true }</pre>
+  </li>
+</ul>
+
+<h1>10. Setup Guide</h1>
+<h2>Prerequisites</h2>
+<ul>
+  <li>Node.js (version 20 or higher installed on system)</li>
+  <li>pnpm package manager (version 9 or higher)</li>
+  <li>Supabase cloud account (or local Docker instance)</li>
+</ul>
+
+<h2>Local Environment Variables Setup</h2>
+<p>Create a file named <code>.env.local</code> in the root directory. Paste and configure the following variables:</p>
+<pre>
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+# Web App URLs
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# Custom JWT Secret (minimum 32 characters)
+JWT_SECRET=super-secure-random-string-at-least-32-chars-long
+
+# Google Credentials (from Google Cloud Console)
+GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=GOCSPX-your-google-client-secret
+</pre>
+
+<h2>Step-by-Step Installation</h2>
+<ol>
+  <li><strong>Clone / Navigate to Project Root:</strong> Open terminal in the directory.</li>
+  <li><strong>Install Packages:</strong> Run the package installer:
+    <pre>pnpm install</pre>
+  </li>
+  <li><strong>Database Migration:</strong> Open your Supabase project SQL editor, copy the entire contents of <code>supabase/schema.sql</code>, paste it, and run the script to build tables and functions.</li>
+  <li><strong>Run Dev Server:</strong> Start the local development server:
+    <pre>pnpm run dev</pre>
+    The portal will launch at <code>http://localhost:3000</code>.
+  </li>
+</ol>
+
+<h2>Railway Production Deployment</h2>
+<ol>
+  <li><strong>Create Railway Project:</strong> Log in to [Railway](https://railway.app), connect your GitHub repository, and select the project.</li>
+  <li><strong>Variables Vault:</strong> Open variables configurations and add all variables listed in <code>.env.local.example</code>. Change <code>NEXT_PUBLIC_SITE_URL</code> to match your custom Railway domain (e.g. <code>https://accbot.up.railway.app</code>).</li>
+  <li><strong>Deploy:</strong> Railway automatically reads the <code>package.json</code> file, installs packages, and compiles the Next.js application using <code>pnpm run build</code>.</li>
+</ol>
+
+<h1>11. Development Guide</h1>
+<h2>How to Add a New Database Table</h2>
+<ol>
+  <li>Open <code>supabase/schema.sql</code>.</li>
+  <li>Add your new SQL table definition:
+    <pre>
+CREATE TABLE public.transactions (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid REFERENCES public.profiles(id) ON DELETE CASCADE NOT null,
+  amount numeric NOT null,
+  description text,
+  created_at timestamp with time zone DEFAULT now() NOT null
+);
+ALTER TABLE public.transactions ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can manage own transactions" ON public.transactions
+  FOR ALL USING (auth.uid() = user_id);
+    </pre>
+  </li>
+  <li>Copy and execute this script inside your Supabase project's SQL editor.</li>
+  <li>Add corresponding TypeScript interfaces in <code>src/types/index.ts</code> to maintain static typing:
+    <pre>
+export interface Transaction {
+  id: string;
+  user_id: string;
+  amount: number;
+  description: string;
+  created_at: string;
+}
+    </pre>
+  </li>
+</ol>
+
+<h2>How to Connect a Page to the Database</h2>
+<p>To load data securely on a Next.js page, use Server Components. This approach executes queries on the server and generates static or dynamic HTML:</p>
+<pre>
+import { createClient } from "@/lib/supabase/server";
+
+export default async function ServicesPage() {
+  const supabase = await createClient();
+  const { data: services, error } = await supabase
+    .from("services")
+    .select("*")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+
+  if (error) {
+    return &lt;div&gt;Error loading services.&lt;/div&gt;;
+  }
+
+  return (
+    &lt;div&gt;
+      {services.map((service) =&gt; (
+        &lt;h2 key={service.id}&gt;{service.title}&lt;/h2&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+<h1>12. Future Development</h1>
+<h2>Suggested Improvements</h2>
+<ul>
+  <li><strong>Edge Verification:</strong> Move JWT decoding to Edge Functions to reduce latency in Next.js middleware routing.</li>
+  <li><strong>Database Indexing:</strong> Add database indexes to frequently queried columns (like slug, user_id, active status) to improve query response times as database records scale.</li>
+  <li><strong>Token Revocation Database Sync:</strong> Complete backend integration between the <code>refresh_tokens</code> table and the token rotation logic. By hashing and recording each issued token in the database, administrators can instantly revoke all active sessions for a user (e.g. in case of security breaches) by updating the table.</li>
+  <li><strong>Rate Limiting:</strong> Configure rate-limiting middleware (using Upstash or similar Redis systems) on API endpoints and login actions to prevent brute force attacks.</li>
+</ul>
+
+<h1>13. Project Completion Checklist</h1>
+<p>This checklist outlines the remaining tasks to move the project from its current state to a production-ready deployment:</p>
+
+<h2>Phase 1: DB & Server Integration</h2>
+<ul>
+  <li><strong>[ ] Update Profile Database Sync:</strong> Implement a Server Action (e.g., <code>updateUserProfile</code>) to write user profile modifications (name, phone) directly into the Supabase <code>profiles</code> table.</li>
+  <li><strong>[ ] Dynamic Admin Dashboard Data:</strong> Update the administrative pages (Dashboard, Inquiries list) to read active contact requests directly from the <code>contact_messages</code> and <code>activity_logs</code> tables.</li>
+  <li><strong>[ ] Dynamic Services & Testimonials Integration:</strong> Bind the homepage components to fetch services and reviews from the database rather than mock files.</li>
+</ul>
+
+<h2>Phase 2: Core Application Logic</h2>
+<ul>
+  <li><strong>[ ] Expense Tracker Ledger Functionality:</strong> Replace the coming-soon placeholder page with standard expense tracking capabilities (e.g., receipts upload, transaction ledger, database logging).</li>
+  <li><strong>[ ] Accounts Web Portal Integration:</strong> Build the corporate accounts viewer, ledger tables, and balance sheet visualizer.</li>
+</ul>
+
+<h2>Phase 3: Production Security & Compliance</h2>
+<ul>
+  <li><strong>[ ] Configure Google Cloud Credentials:</strong> Set production redirect URIs in the Google Cloud Console and paste credentials into Supabase Auth providers.</li>
+  <li><strong>[ ] Secure Secrets in Railway:</strong> Verify that all values (keys, secrets, URLs) are configured in the Railway dashboard.</li>
+  <li><strong>[ ] Production Verification Checks:</strong> Run <code>pnpm run build</code> locally to verify clean compilation, then perform final end-to-end authentication tests.</li>
+</ul>
+
+</body>
+</html>

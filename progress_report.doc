@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>AccBots — Enterprise Architecture & Comprehensive Progress Report</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  @page {
+    size: A4;
+    margin: 1in;
+    mso-header-margin: 0.5in;
+    mso-footer-margin: 0.5in;
+  }
+  body {
+    font-family: 'Segoe UI', Calibri, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    color: #0F172A;
+    margin: 40px;
+    font-size: 10.5pt;
+    line-height: 1.65;
+  }
+  .title-page {
+    text-align: center;
+    padding: 70px 40px 50px 40px;
+    border: 3px double #C5A85C;
+    background-color: #FAFAF9;
+    margin-bottom: 50px;
+    page-break-after: always;
+  }
+  .title-page .badge {
+    display: inline-block;
+    background: #0F172A;
+    color: #C5A85C;
+    font-weight: 700;
+    font-size: 9pt;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .title-page h1 {
+    font-size: 28pt;
+    color: #0F172A;
+    border-bottom: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .title-page h2 {
+    font-size: 15pt;
+    color: #85581A;
+    border-bottom: none;
+    margin-top: 0;
+    margin-bottom: 45px;
+    font-weight: 500;
+  }
+  .meta-box {
+    margin: 0 auto;
+    width: 80%;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 25px;
+    text-align: left;
+  }
+  .meta-box table {
+    width: 100%;
+    border: none;
+    margin: 0;
+  }
+  .meta-box td {
+    border: none;
+    padding: 4px 8px;
+    font-size: 10pt;
+  }
+  .meta-label {
+    font-weight: bold;
+    color: #64748B;
+    width: 35%;
+  }
+  .meta-val {
+    color: #0F172A;
+    font-weight: 600;
+  }
+
+  h1 {
+    color: #85581A;
+    font-size: 18pt;
+    border-bottom: 2px solid #C5A85C;
+    padding-bottom: 6px;
+    margin-top: 32pt;
+    margin-bottom: 12pt;
+    page-break-before: always;
+    font-weight: 700;
+  }
+  h1.first {
+    page-break-before: avoid;
+  }
+  h2 {
+    color: #0F172A;
+    font-size: 13pt;
+    margin-top: 20pt;
+    margin-bottom: 8pt;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 4px;
+    font-weight: 700;
+  }
+  h3 {
+    color: #1E293B;
+    font-size: 11pt;
+    margin-top: 14pt;
+    margin-bottom: 6pt;
+    font-weight: 600;
+  }
+  p {
+    margin-bottom: 10pt;
+    text-align: justify;
+  }
+  ul, ol {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    padding-left: 22pt;
+  }
+  li {
+    margin-bottom: 4pt;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 12pt;
+    margin-bottom: 16pt;
+  }
+  th {
+    background-color: #0F172A;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-align: left;
+    padding: 9px 12px;
+    border: 1px solid #CBD5E1;
+    font-size: 9.5pt;
+  }
+  td {
+    padding: 8px 12px;
+    border: 1px solid #CBD5E1;
+    font-size: 9.5pt;
+    vertical-align: top;
+  }
+  tr:nth-child(even) {
+    background-color: #F8FAFC;
+  }
+  .tag-done {
+    background-color: #DCFCE7;
+    color: #15803D;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    display: inline-block;
+  }
+  .tag-prog {
+    background-color: #FEF9C3;
+    color: #854D0E;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    display: inline-block;
+  }
+  .tag-todo {
+    background-color: #F1F5F9;
+    color: #475569;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    display: inline-block;
+  }
+  .highlight {
+    background-color: #F1F5F9;
+    color: #85581A;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 9pt;
+  }
+  .code-block {
+    background-color: #0F172A;
+    color: #F8FAFC;
+    border-left: 4px solid #C5A85C;
+    padding: 12px 16px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 8.5pt;
+    white-space: pre-wrap;
+    margin-top: 10pt;
+    margin-bottom: 12pt;
+    border-radius: 0 6px 6px 0;
+  }
+  .card-box {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-left: 4px solid #C5A85C;
+    padding: 14px 18px;
+    margin: 12pt 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .card-box-title {
+    font-weight: 700;
+    color: #85581A;
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+  }
+  .footer {
+    margin-top: 40pt;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 12px;
+    font-size: 8.5pt;
+    color: #64748B;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ TITLE PAGE ══════════════════ -->
+<div class="title-page">
+  <div class="badge">AccBots Digital Platform • Engineering Handover</div>
+  <h1>ACCBOTS PLATFORM</h1>
+  <h2>Technical Architecture, Security &amp; Implementation Progress Audit</h2>
+
+  <div class="meta-box">
+    <table>
+      <tr>
+        <td class="meta-label">Document Title:</td>
+        <td class="meta-val">Full System Technical Progress &amp; Architecture Audit Report</td>
+      </tr>
+      <tr>
+        <td class="meta-label">Target Audience:</td>
+        <td class="meta-val">Executive Leadership, Technical Committee &amp; Development Team</td>
+      </tr>
+      <tr>
+        <td class="meta-label">System Release Version:</td>
+        <td class="meta-val">v1.0.0 (Production Candidate)</td>
+      </tr>
+      <tr>
+        <td class="meta-label">Primary Stack:</td>
+        <td class="meta-val">Next.js 16 (App Router), React 19, TypeScript, PostgreSQL (Supabase), Cloudflare R2</td>
+      </tr>
+      <tr>
+        <td class="meta-label">Deployment Target:</td>
+        <td class="meta-val">Railway (PaaS Standalone Container)</td>
+      </tr>
+      <tr>
+        <td class="meta-label">Audit Date:</td>
+        <td class="meta-val">September 2026</td>
+      </tr>
+      <tr>
+        <td class="meta-label">Classification:</td>
+        <td class="meta-val">CONFIDENTIAL • INTERNAL AUDIT &amp; OPERATIONS</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════ SECTION 1 ══════════════════ -->
+<h1 class="first">1. Executive Summary</h1>
+<p>
+  <strong>AccBots</strong> is an enterprise-grade web application created to digitize and scale accounting, bookkeeping, UAE FTA tax advisory, corporate auditing, and business registration services. In addition to a high-converting public marketing front-end, the application embeds a full <strong>Client Portal</strong>, an <strong>Administrative Control Suite</strong>, and two sophisticated financial micro-applications: an <strong>Expense Tracker</strong> with cloud receipt attachment and a <strong>Double-Entry Accounting General Ledger (Accounts-Web)</strong> with dynamic Trial Balance and Profit &amp; Loss reporting.
+</p>
+<p>
+  The platform is designed with an uncompromising standard for <strong>vendor independence</strong>, <strong>data integrity</strong>, and <strong>bank-level web security</strong>. Proprietary third-party authentication widgets have been substituted with a custom stateless JSON Web Token (JWT) architecture backed by relational PostgreSQL persistence and SHA-256 session token hashing.
+</p>
+
+<!-- ══════════════════ SECTION 2 ══════════════════ -->
+<h1>2. Technology Stack &amp; Language Distribution</h1>
+<p>
+  The software architecture leverages modern web technologies selected for strict type safety, fast edge execution, and operational cost-efficiency.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Technology / Tool</th>
+      <th>Primary Language</th>
+      <th>Technical Role &amp; Justification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Frontend Framework</strong></td>
+      <td>Next.js 16 (App Router)</td>
+      <td>TypeScript (.tsx)</td>
+      <td>Utilizes React Server Components (RSC) for instantaneous initial page loads, edge rendering, SEO optimization, and streaming UI.</td>
+    </tr>
+    <tr>
+      <td><strong>Client Engine</strong></td>
+      <td>React 19</td>
+      <td>TypeScript / JSX</td>
+      <td>Provides declarative component management, modern hooks, and seamless hydration across interactive portals.</td>
+    </tr>
+    <tr>
+      <td><strong>Styling &amp; Theme</strong></td>
+      <td>Tailwind CSS v4 &amp; Base UI</td>
+      <td>CSS3 &amp; Utility Classes</td>
+      <td>Modern CSS styling incorporating luxury gold accents (<span class="highlight">#C5A85C</span>) and dark/light mode toggle with zero runtime style overhead.</td>
+    </tr>
+    <tr>
+      <td><strong>Motion Design</strong></td>
+      <td>Framer Motion</td>
+      <td>TypeScript</td>
+      <td>Smooth client-side micro-animations, accordion reveals, modal transitions, and responsive gestures.</td>
+    </tr>
+    <tr>
+      <td><strong>Backend Logic</strong></td>
+      <td>Next.js Server Actions</td>
+      <td>TypeScript (.ts)</td>
+      <td>Direct server-side execution (<span class="highlight">"use server"</span>), eliminating boilerplate REST controllers and providing end-to-end type safety.</td>
+    </tr>
+    <tr>
+      <td><strong>Database Engine</strong></td>
+      <td>PostgreSQL 15+</td>
+      <td>SQL</td>
+      <td>Enterprise relational storage with Row-Level Security (RLS) policies, foreign key integrity, check constraints, and analytical SQL views.</td>
+    </tr>
+    <tr>
+      <td><strong>Database Client</strong></td>
+      <td>postgres.js</td>
+      <td>TypeScript</td>
+      <td>High-speed, memory-efficient PostgreSQL driver featuring native parameterized tagged template queries to eliminate SQL injection attacks.</td>
+    </tr>
+    <tr>
+      <td><strong>Authentication</strong></td>
+      <td>jose + bcryptjs</td>
+      <td>TypeScript</td>
+      <td>Stateless HS256 JWT signing, verification, SHA-256 token hashing, and 12-round bcrypt password hashing.</td>
+    </tr>
+    <tr>
+      <td><strong>Data Validation</strong></td>
+      <td>Zod 4</td>
+      <td>TypeScript</td>
+      <td>Strict schema validation enforcing field types, length constraints, and format checks across all forms and Server Actions.</td>
+    </tr>
+    <tr>
+      <td><strong>Object Storage</strong></td>
+      <td>Cloudflare R2 (via AWS S3 SDK)</td>
+      <td>TypeScript</td>
+      <td>S3-compatible zero-egress cloud storage for company assets, team portraits, blog banners, and expense invoice receipts.</td>
+    </tr>
+    <tr>
+      <td><strong>Email Delivery</strong></td>
+      <td>Resend</td>
+      <td>TypeScript / HTML</td>
+      <td>Transactional email infrastructure delivering branded client welcome emails, password reset links, and real-time contact notifications.</td>
+    </tr>
+    <tr>
+      <td><strong>Hosting &amp; CI/CD</strong></td>
+      <td>Railway (PaaS)</td>
+      <td>Nixpacks / Docker</td>
+      <td>Automated deployment directly from GitHub commits, serving Next.js via optimized standalone container output.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════ SECTION 3 ══════════════════ -->
+<h1>3. Database Architecture &amp; Connectivity</h1>
+
+<h2>3.1 Connection Strategy &amp; Resilience</h2>
+<p>
+  The database is hosted on Supabase's managed PostgreSQL infrastructure located in the <span class="highlight">aws-0-ap-southeast-1</span> region. Connection management is governed through the <strong>PgBouncer Transaction Pooler</strong> on port <span class="highlight">6543</span>.
+</p>
+
+<div class="card-box">
+  <div class="card-box-title">Critical Architectural Solution: URL Dotted Username Handling</div>
+  <p>
+    Supabase transaction pooler URLs format the username as <span class="highlight">postgres.[project-ref]</span>. Default URL parsers erroneously interpret the dot as a hostname separator, resulting in runtime <span class="highlight">ENOTFOUND tenant/user</span> errors. In <span class="highlight">src/lib/db.ts</span>, discrete URL parameters are parsed programmatically and supplied directly into the connection pool.
+  </p>
+</div>
+
+<h2>3.2 Atomic Financial Transactions</h2>
+<p>
+  For complex operations in the Accounts-Web general ledger, multi-split journal entries require absolute ACID compliance. AccBots employs atomic transaction boundaries (<span class="highlight">sql.begin(async (tx) =&gt; { ... })</span>) to ensure that if a credit or debit entry fails, all corresponding insertions are rolled back immediately, preserving mathematical integrity.
+</p>
+
+<h2>3.3 Complete Schema &amp; Table Reference</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Table Name</th>
+      <th>Primary Purpose</th>
+      <th>Key Columns &amp; Constraints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>users</strong></td>
+      <td>Central user account store</td>
+      <td>id (UUID PK), full_name, email (UNIQUE), password_hash, role ('super_admin','admin','user'), is_active</td>
+    </tr>
+    <tr>
+      <td><strong>refresh_tokens</strong></td>
+      <td>Session persistence &amp; revocation</td>
+      <td>id (UUID PK), user_id (FK users), token_hash (UNIQUE SHA-256), expires_at, revoked_at</td>
+    </tr>
+    <tr>
+      <td><strong>password_reset_tokens</strong></td>
+      <td>Cryptographic password recovery</td>
+      <td>id (UUID PK), user_id (FK users), token_hash (UNIQUE), expires_at, used_at</td>
+    </tr>
+    <tr>
+      <td><strong>contact_messages</strong></td>
+      <td>Lead capture from public forms</td>
+      <td>id (UUID PK), name, email, phone, subject, message, is_read (BOOL), created_at</td>
+    </tr>
+    <tr>
+      <td><strong>services</strong></td>
+      <td>Advisory service packages</td>
+      <td>id (UUID PK), title, slug (UNIQUE), icon, short_description, benefits (ARRAY), process_steps (JSONB), faqs (JSONB)</td>
+    </tr>
+    <tr>
+      <td><strong>website_settings</strong></td>
+      <td>Dynamic site configuration</td>
+      <td>id (UUID PK), key (UNIQUE), value, category ('general','contact','seo','social'), updated_at</td>
+    </tr>
+    <tr>
+      <td><strong>testimonials</strong></td>
+      <td>Client ratings &amp; reviews</td>
+      <td>id (UUID PK), name, company, role, content, avatar_url, rating (1-5)</td>
+    </tr>
+    <tr>
+      <td><strong>team_members</strong></td>
+      <td>Executive leadership bios</td>
+      <td>id (UUID PK), name, role, bio, avatar_url, linkedin_url, sort_order</td>
+    </tr>
+    <tr>
+      <td><strong>blog_posts</strong></td>
+      <td>CMS knowledge base articles</td>
+      <td>id (UUID PK), title, slug (UNIQUE), excerpt, content, cover_image, author_id (FK users), is_published</td>
+    </tr>
+    <tr>
+      <td><strong>activity_logs</strong></td>
+      <td>Security and audit tracking</td>
+      <td>id (UUID PK), user_id (FK users), action, entity_type, entity_id, metadata (JSONB), ip_address</td>
+    </tr>
+    <tr>
+      <td><strong>expense_categories</strong></td>
+      <td>Budget classification</td>
+      <td>id (UUID PK), name (UNIQUE), description, budget_limit, is_active</td>
+    </tr>
+    <tr>
+      <td><strong>expenses</strong></td>
+      <td>Corporate expense filings</td>
+      <td>id (UUID PK), user_id (FK users), category_id (FK), amount, currency, receipt_url, status ('pending','approved','rejected')</td>
+    </tr>
+    <tr>
+      <td><strong>accounts</strong></td>
+      <td>General Ledger Chart of Accounts</td>
+      <td>id (UUID PK), code (UNIQUE), name, type ('asset','liability','equity','revenue','expense'), is_active</td>
+    </tr>
+    <tr>
+      <td><strong>transactions</strong></td>
+      <td>Journal voucher headers</td>
+      <td>id (UUID PK), reference_number (UNIQUE), description, transaction_date, created_by (FK users)</td>
+    </tr>
+    <tr>
+      <td><strong>journal_entries</strong></td>
+      <td>Double-entry debit/credit splits</td>
+      <td>id (UUID PK), transaction_id (FK CASCADE), account_id (FK RESTRICT), debit, credit, description (CHECK: balanced splits)</td>
+    </tr>
+    <tr>
+      <td><strong>trial_balance (View)</strong></td>
+      <td>Dynamic accounting trial balance</td>
+      <td>account_id, code, name, type, total_debit, total_credit, net_balance (Calculated real-time via SQL aggregation)</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════ SECTION 4 ══════════════════ -->
+<h1>4. Security Architecture &amp; Perimeter Defense</h1>
+<ul>
+  <li><strong>HTTP Hardening:</strong> Configured in <span class="highlight">next.config.ts</span> with <span class="highlight">nosniff</span>, <span class="highlight">X-Frame-Options: DENY</span>, <span class="highlight">Referrer-Policy</span>, and <span class="highlight">Permissions-Policy</span>.</li>
+  <li><strong>Custom JWT Authentication:</strong> HS256 signed access tokens (15 min expiry) combined with database-tracked SHA-256 hashed refresh tokens (7-30 days).</li>
+  <li><strong>Cookie Defense:</strong> Set with <span class="highlight">HttpOnly</span>, <span class="highlight">Secure</span>, and <span class="highlight">SameSite=Lax</span> to insulate against XSS and CSRF token extraction.</li>
+  <li><strong>Edge Proxy Route Guard:</strong> Located in <span class="highlight">src/proxy.ts</span>, validating permissions and triggering automatic token refresh in the background.</li>
+  <li><strong>Role-Based Access Control:</strong> Strict boundary enforcement for <span class="highlight">super_admin</span>, <span class="highlight">admin</span>, and <span class="highlight">user</span>.</li>
+</ul>
+
+<!-- ══════════════════ SECTION 5 ══════════════════ -->
+<h1>5. Hosting &amp; Infrastructure Details</h1>
+<ul>
+  <li><strong>PaaS Host:</strong> Railway using custom Nixpacks deployment running Next.js standalone container.</li>
+  <li><strong>Database Host:</strong> Supabase PostgreSQL (AWS ap-southeast-1) with transaction pooling on port 6543.</li>
+  <li><strong>Storage CDN:</strong> Cloudflare R2 bucket (<span class="highlight">accbot-main-website</span>) with public edge distribution and signed uploads.</li>
+  <li><strong>Email Infrastructure:</strong> Resend API sending transactional emails with custom domain verification.</li>
+</ul>
+
+<!-- ══════════════════ SECTION 6 ══════════════════ -->
+<h1>6. Implementation Progress Summary</h1>
+<ul>
+  <li><span class="tag-done">COMPLETED</span> Public Website (Hero, Services, Blog, About, Testimonials, Contact, Legal, Dynamic SEO).</li>
+  <li><span class="tag-done">COMPLETED</span> Custom Stateless Authentication &amp; Password Recovery.</li>
+  <li><span class="tag-done">COMPLETED</span> Client Portal (Dashboard, Services, Security, Support).</li>
+  <li><span class="tag-done">COMPLETED</span> Admin Portal (Dashboard, Users, Services, Blog CMS, Messages, Testimonials, Team, Settings, Activity Logs).</li>
+  <li><span class="tag-done">COMPLETED</span> Expense Tracker Micro-App with Cloudflare R2 receipt attachments.</li>
+  <li><span class="tag-done">COMPLETED</span> Accounts-Web General Ledger with Trial Balance and Profit &amp; Loss statements.</li>
+</ul>
+
+<!-- ══════════════════ SECTION 7 ══════════════════ -->
+<h1>7. Production Launch Roadmap</h1>
+<ol>
+  <li><strong>Domain &amp; SSL:</strong> Bind custom domain in Railway and configure DNS CNAME/A records.</li>
+  <li><strong>Email DNS:</strong> Verify SPF, DKIM, and DMARC records in Resend for official domain addresses.</li>
+  <li><strong>Initial Super Admin:</strong> Execute <span class="highlight">/api/auth/setup-admin</span> one time to establish primary root access.</li>
+  <li><strong>Export Enhancements:</strong> Add CSV and PDF export capabilities to the Trial Balance and Expense Tracker.</li>
+  <li><strong>Social Logins:</strong> Register Google Cloud OAuth 2.0 Client credentials.</li>
+</ol>
+
+<div class="footer">
+  AccBots Digital Platform • Enterprise Systems Architecture Group • Confidentially Generated for Board Review
+</div>
+
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Accbot - Database Design</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    color: #1E293B;
+    margin: 40px;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #85581A; /* Gold primary */
+    font-family: 'Segoe UI Semibold', 'Georgia', serif;
+    font-size: 20pt;
+    border-bottom: 2px solid #85581A;
+    padding-bottom: 5px;
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-before: always;
+  }
+  h1.first {
+    page-break-before: avoid;
+  }
+  h2 {
+    color: #0F172A; /* Dark secondary */
+    font-family: 'Segoe UI Semibold', Arial, sans-serif;
+    font-size: 14pt;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 3px;
+  }
+  h3 {
+    color: #1E293B;
+    font-family: 'Segoe UI Semibold', Arial, sans-serif;
+    font-size: 11.5pt;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+  }
+  p {
+    margin-bottom: 10pt;
+    text-align: justify;
+  }
+  ul, ol {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    padding-left: 20pt;
+  }
+  li {
+    margin-bottom: 4pt;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 12pt;
+    margin-bottom: 12pt;
+  }
+  th {
+    background-color: #0F172A;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #CBD5E1;
+    font-size: 9.5pt;
+  }
+  td {
+    padding: 8px 12px;
+    border: 1px solid #CBD5E1;
+    font-size: 9.5pt;
+  }
+  tr:nth-child(even) {
+    background-color: #F8FAFC;
+  }
+  .highlight {
+    background-color: #F1F5F9;
+    color: #B45309;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+  }
+  .code-block {
+    background-color: #F8FAFC;
+    border-left: 4px solid #85581A;
+    padding: 10px 15px;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+    white-space: pre-wrap;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+  }
+  .note {
+    background-color: #EFF6FF;
+    border-left: 4px solid #3B82F6;
+    padding: 12px 15px;
+    margin-top: 12pt;
+    margin-bottom: 12pt;
+  }
+  .note-title {
+    font-weight: bold;
+    color: #1E3A8A;
+    margin-bottom: 4px;
+  }
+  .warning {
+    background-color: #FFFBEB;
+    border-left: 4px solid #F59E0B;
+    padding: 12px 15px;
+    margin-top: 12pt;
+    margin-bottom: 12pt;
+  }
+  .warning-title {
+    font-weight: bold;
+    color: #78350F;
+    margin-bottom: 4px;
+  }
+  .title-page {
+    text-align: center;
+    padding: 60px 40px;
+    border: 3px double #85581A;
+    margin-bottom: 40px;
+  }
+  .title-page h1 {
+    font-size: 28pt;
+    color: #0F172A;
+    border-bottom: none;
+    margin-top: 0;
+    page-break-before: avoid;
+  }
+  .title-page h2 {
+    font-size: 16pt;
+    color: #85581A;
+    border-bottom: none;
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  .title-page p {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #64748B;
+  }
+  .footer {
+    margin-top: 30pt;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 10px;
+    font-size: 8.5pt;
+    color: #64748B;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-page">
+  <h1>ACCBOT WEB SYSTEM</h1>
+  <h2>Database Design & Relational Reference Document</h2>
+  <br><br><br>
+  <p><strong>Prepared For:</strong> Database Administrators & System Developers</p>
+  <p><strong>Subject:</strong> PostgreSQL Schema, Triggers, RLS Policies, and Proposed Ledger Schema</p>
+  <p><strong>Database Platform:</strong> PostgreSQL (hosted on Supabase Cloud)</p>
+  <p><strong>Version:</strong> 1.0 (Production Blueprint)</p>
+  <p><strong>Date:</strong> July 4, 2026</p>
+</div>
+
+<h1 class="first">1. Database Overview & Security</h1>
+<p>The Accbot database structure uses PostgreSQL hosted on Supabase. To ensure secure multi-tenant structures and protect private data, the system uses Row Level Security (RLS) on all tables. Database tables are accessible through postgrest auto-generated REST APIs or Next.js Server Actions. Access is controlled by Postgres RLS policy rules based on the user's role (<span class="highlight">super_admin</span>, <span class="highlight">admin</span>, <span class="highlight">user</span>).</p>
+
+<h2>Database Security Features</h2>
+<ul>
+  <li><strong>Row Level Security (RLS):</strong> Every query is verified against user authentication contexts (<span class="highlight">auth.uid()</span>) to prevent users from accessing other accounts' records.</li>
+  <li><strong>Definer Functions:</strong> Administrative functions run under a SECURITY DEFINER context, allowing limited database tasks to bypass standard user RLS restrictions.</li>
+  <li><strong>Cascade Actions:</strong> Deleting an auth user automatically deletes the corresponding profile and related activity logs.</li>
+</ul>
+
+<h1>2. Entity Relationship Diagram (ERD - Conceptual)</h1>
+<p>The schema focuses on user profiles as the central entity. The diagram below illustrates the relationships between the database tables:</p>
+
+<div class="code-block">
+ +-----------------+                +-----------------+
+ |   auth.users    |                |  testimonials   |
+ +-----------------+                +-----------------+
+        || 1:1                             ||
+        || (Trigger)                       || (Public read if active)
+        v                                  v
+ +-----------------+                +-----------------+
+ | public.profiles | <=== 1:N ====> |   blog_posts    |
+ +-----------------+                +-----------------+
+   ||           ||                     (author_id)
+   || 1:N       || 1:N
+   v            v
+ +-----------------+  +-----------------+  +-----------------+
+ |  activity_logs  |  |contact_messages |  |    services     |
+ +-----------------+  +-----------------+  +-----------------+
+                      (Public insert)      (Public read if active)
+</div>
+
+<h1>3. Database Tables Reference (Existing Schema)</h1>
+
+<h3>Table 1: public.profiles</h3>
+<p><strong>Purpose:</strong> Stores user profiles and roles. Syncs with <span class="highlight">auth.users</span> via trigger.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Data Type</th>
+      <th>Constraints</th>
+      <th>Default Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>uuid</td>
+      <td>PRIMARY KEY, REFERENCES auth.users ON DELETE CASCADE</td>
+      <td>None</td>
+      <td>Links directly to auth.users.id.</td>
+    </tr>
+    <tr>
+      <td>full_name</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>User's display name.</td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>text</td>
+      <td>NOT NULL, UNIQUE</td>
+      <td>None</td>
+      <td>User's email. Used for identity verification.</td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td>text</td>
+      <td>Nullable</td>
+      <td>None</td>
+      <td>User's phone number.</td>
+    </tr>
+    <tr>
+      <td>avatar_url</td>
+      <td>text</td>
+      <td>Nullable</td>
+      <td>None</td>
+      <td>Link to the profile avatar image.</td>
+    </tr>
+    <tr>
+      <td>role</td>
+      <td>text</td>
+      <td>NOT NULL, CHECK (role IN ('super_admin', 'admin', 'user'))</td>
+      <td>'user'</td>
+      <td>System permission tier.</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>timestamp with time zone</td>
+      <td>NOT NULL</td>
+      <td>timezone('utc'::text, now())</td>
+      <td>Creation timestamp.</td>
+    </tr>
+    <tr>
+      <td>updated_at</td>
+      <td>timestamp with time zone</td>
+      <td>NOT NULL</td>
+      <td>timezone('utc'::text, now())</td>
+      <td>Modification timestamp.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Table 2: public.contact_messages</h3>
+<p><strong>Purpose:</strong> Captures client messages sent via contact forms.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Data Type</th>
+      <th>Constraints</th>
+      <th>Default Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>uuid</td>
+      <td>PRIMARY KEY</td>
+      <td>gen_random_uuid()</td>
+      <td>Unique message identifier.</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>Sender's name.</td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>Sender's email.</td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td>text</td>
+      <td>Nullable</td>
+      <td>None</td>
+      <td>Sender's phone.</td>
+    </tr>
+    <tr>
+      <td>subject</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>Subject of the message.</td>
+    </tr>
+    <tr>
+      <td>message</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>Detailed message text.</td>
+    </tr>
+    <tr>
+      <td>is_read</td>
+      <td>boolean</td>
+      <td>NOT NULL</td>
+      <td>false</td>
+      <td>Read status tracking for admins.</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>timestamp with time zone</td>
+      <td>NOT NULL</td>
+      <td>timezone('utc'::text, now())</td>
+      <td>Creation timestamp.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Table 3: public.services</h3>
+<p><strong>Purpose:</strong> Catalog of professional services offered by the firm.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Data Type</th>
+      <th>Constraints</th>
+      <th>Default Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>uuid</td>
+      <td>PRIMARY KEY</td>
+      <td>gen_random_uuid()</td>
+      <td>Unique service identifier.</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>Service name.</td>
+    </tr>
+    <tr>
+      <td>slug</td>
+      <td>text</td>
+      <td>NOT NULL, UNIQUE</td>
+      <td>None</td>
+      <td>URL pathname handle.</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>Lucide icon key.</td>
+    </tr>
+    <tr>
+      <td>short_description</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>Summary text.</td>
+    </tr>
+    <tr>
+      <td>overview</td>
+      <td>text</td>
+      <td>NOT NULL</td>
+      <td>None</td>
+      <td>Detailed explanation text.</td>
+    </tr>
+    <tr>
+      <td>benefits</td>
+      <td>text[]</td>
+      <td>NOT NULL</td>
+      <td>'{}'</td>
+      <td>List of key benefits.</td>
+    </tr>
+    <tr>
+      <td>process_steps</td>
+      <td>jsonb</td>
+      <td>NOT NULL</td>
+      <td>'[]'</td>
+      <td>Array of step objects (step, title, description).</td>
+    </tr>
+    <tr>
+      <td>faqs</td>
+      <td>jsonb</td>
+      <td>NOT NULL</td>
+      <td>'[]'</td>
+      <td>Array of FAQ objects (question, answer).</td>
+    </tr>
+    <tr>
+      <td>is_active</td>
+      <td>boolean</td>
+      <td>NOT NULL</td>
+      <td>true</td>
+      <td>Public catalog visibility toggle.</td>
+    </tr>
+    <tr>
+      <td>sort_order</td>
+      <td>integer</td>
+      <td>NOT NULL</td>
+      <td>0</td>
+      <td>Display sorting order index.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Other Existing Tables Summary</h3>
+<ul>
+  <li><strong>website_settings:</strong> ID (UUID, PK), key (text, UNIQUE), value (text), category (text, CHECK category in general, contact, seo, social), updated_at. Stores metadata config items.</li>
+  <li><strong>testimonials:</strong> ID (UUID, PK), name, company, role, content, avatar_url, rating, is_active, sort_order, created_at.</li>
+  <li><strong>team_members:</strong> ID (UUID, PK), name, role, bio, avatar_url, linkedin_url, sort_order, is_active, created_at.</li>
+  <li><strong>blog_posts:</strong> ID (UUID, PK), title, slug (UNIQUE), excerpt, content, cover_image, author_id (FK profiles), is_published, published_at, created_at, updated_at.</li>
+  <li><strong>activity_logs:</strong> ID (UUID, PK), user_id (FK profiles), action, entity_type, entity_id, metadata (jsonb, DEFAULT '{}'), ip_address, created_at.</li>
+</ul>
+
+<h1>4. Database Functions & Triggers</h1>
+
+<h3>New User Autoregister Trigger</h3>
+<p>When a client completes sign up, a trigger automatically inserts user attributes from metadata into the public profiles table:</p>
+<div class="code-block">
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.profiles (id, full_name, email, role, avatar_url)
+  VALUES (
+    NEW.id,
+    COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name', 'New User'),
+    NEW.email,
+    'user',
+    NEW.raw_user_meta_data->>'avatar_url'
+  );
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+</div>
+
+<h3>Admin Validation Security Check</h3>
+<p>Helper function that reviews if a user belongs to admin or super_admin roles. Runs with definer privileges to evaluate data securely:</p>
+<div class="code-block">
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS BOOLEAN AS $$
+BEGIN
+  RETURN EXISTS (
+    SELECT 1 FROM public.profiles 
+    WHERE id = auth.uid() AND role IN ('admin', 'super_admin')
+  );
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+</div>
+
+<h1>5. Proposed Extensions - Expense Tracker Schema</h1>
+<p>To implement the dynamic Expense Tracker dashboard, the database schema will require the following tables:</p>
+<div class="code-block">
+-- Expense Categories Table
+CREATE TABLE public.expense_categories (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  name text NOT NULL UNIQUE,
+  description text,
+  budget_limit numeric(12, 2) NOT NULL DEFAULT 0.00,
+  is_active boolean DEFAULT true NOT NULL,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Expenses Logging Table
+CREATE TABLE public.expenses (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid REFERENCES public.profiles(id) ON DELETE SET NULL,
+  category_id uuid REFERENCES public.expense_categories(id) ON DELETE RESTRICT,
+  amount numeric(12, 2) NOT NULL CHECK (amount > 0),
+  currency text NOT NULL DEFAULT 'AED',
+  description text NOT NULL,
+  receipt_url text,
+  status text NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+  transaction_date date NOT NULL DEFAULT current_date,
+  approved_by uuid REFERENCES public.profiles(id) ON DELETE SET NULL,
+  approved_at timestamp with time zone,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- RLS Policies
+ALTER TABLE public.expense_categories ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.expenses ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow authenticated read on categories" ON public.expense_categories
+  FOR SELECT TO authenticated USING (true);
+  
+CREATE POLICY "Allow admin CRUD on categories" ON public.expense_categories
+  FOR ALL USING (public.is_admin());
+
+CREATE POLICY "Allow users to view own expenses" ON public.expenses
+  FOR SELECT TO authenticated USING (auth.uid() = user_id OR public.is_admin());
+
+CREATE POLICY "Allow users to log own expenses" ON public.expenses
+  FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id);
+</div>
+
+<h1>6. Proposed Extensions - Accounts Web Ledger Schema</h1>
+<p>To implement the double-entry corporate accounting ledger, we propose the following schema:</p>
+<div class="code-block">
+-- Chart of Accounts Table
+CREATE TABLE public.accounts (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  code text NOT NULL UNIQUE,
+  name text NOT NULL,
+  type text NOT NULL CHECK (type IN ('asset', 'liability', 'equity', 'revenue', 'expense')),
+  currency text NOT NULL DEFAULT 'AED',
+  is_active boolean DEFAULT true NOT NULL,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Transactions Table
+CREATE TABLE public.transactions (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  reference_number text NOT NULL UNIQUE,
+  description text NOT NULL,
+  transaction_date date NOT NULL DEFAULT current_date,
+  created_by uuid REFERENCES public.profiles(id) ON DELETE SET NULL,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Journal Entries (Splits) Table
+CREATE TABLE public.journal_entries (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  transaction_id uuid REFERENCES public.transactions(id) ON DELETE CASCADE,
+  account_id uuid REFERENCES public.accounts(id) ON DELETE RESTRICT,
+  debit numeric(12, 2) NOT NULL DEFAULT 0.00 CHECK (debit >= 0),
+  credit numeric(12, 2) NOT NULL DEFAULT 0.00 CHECK (credit >= 0),
+  description text,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+  CONSTRAINT chk_debit_credit_values CHECK (
+    (debit > 0 AND credit = 0) OR (debit = 0 AND credit > 0)
+  )
+);
+</div>
+
+<h3>Financial Aggregation Views</h3>
+<p>To calculate balance sheets and trial balances dynamically, we define the following view:</p>
+<div class="code-block">
+CREATE OR REPLACE VIEW public.trial_balance AS
+SELECT 
+  a.code,
+  a.name,
+  a.type,
+  SUM(j.debit) as total_debit,
+  SUM(j.credit) as total_credit,
+  (SUM(j.debit) - SUM(j.credit)) as net_balance
+FROM public.accounts a
+JOIN public.journal_entries j ON a.id = j.account_id
+GROUP BY a.id, a.code, a.name, a.type;
+</div>
+
+<div class="footer">
+  <p>© 2026 Accbot Website Project. All Rights Reserved. Prepared for Management Review.</p>
+</div>
+</body>
+</html>
