@@ -36,7 +36,7 @@ export function Intro() {
             <SectionHeader
               tag="Who We Are"
               title="Dedicated Financial Partners Committed to Your Growth"
-              description="Accbot is a leading accounting and advisory firm. Designed by Nexora Software Solutions for clients seeking premium, high-integrity financial support, we handle everything from basic bookkeeping to complex tax planning and audits."
+              description="Accbot is a leading accounting and advisory firm. Designed for corporate clients and growing enterprises seeking premium, high-integrity financial support, we handle everything from basic bookkeeping to complex tax planning and audits."
               align="left"
               className="mb-6"
             />

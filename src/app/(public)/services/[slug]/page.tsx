@@ -61,23 +61,23 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   return (
     <div className="flex flex-col w-full">
       {/* Service Banner */}
-      <section className="relative bg-card text-foreground dark:bg-dark dark:text-white py-24 overflow-hidden border-b border-border dark:border-gold/10">
+      <section className="relative bg-card text-foreground dark:bg-dark dark:text-white py-20 overflow-hidden border-b border-border dark:border-gold/10">
         <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
         <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
         <div className="container-custom relative z-10 text-center flex flex-col items-center">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold mb-4">
-            <Link href="/" className="hover:text-gold transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/services" className="hover:text-gold transition-colors">Services</Link>
-            <span>/</span>
-            <span className="text-foreground dark:text-white">{service.title}</span>
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-6">
+            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+            <span className="text-muted-foreground/60">/</span>
+            <Link href="/services" className="hover:text-foreground transition-colors">Services</Link>
+            <span className="text-muted-foreground/60">/</span>
+            <span className="text-gold font-semibold">{service.title}</span>
+          </nav>
+
+          <div className="h-14 w-14 bg-gold/15 border border-gold/30 text-gold rounded-2xl flex items-center justify-center mb-5 shadow-sm">
+            <Icon className="h-7 w-7" />
           </div>
 
-          <div className="h-16 w-16 bg-gold/10 border border-gold/30 text-gold rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-            <Icon className="h-8 w-8" />
-          </div>
-
-          <h1 className="text-3xl md:text-5xl font-extrabold font-heading text-foreground dark:text-white mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-foreground dark:text-white tracking-tight mb-4">
             {service.title}
           </h1>
           <div className="gold-divider mb-4" />

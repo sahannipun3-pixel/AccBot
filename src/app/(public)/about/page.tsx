@@ -68,7 +68,7 @@ export default function AboutPage() {
                 className="mb-4"
               />
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Founded with a mission to simplify corporate financial structures, Accbot has grown into a trusted partner for companies scaling in Sri Lanka and regionally. Developed as a bespoke client portal by Nexora Software Solutions, we fuse years of certified bookkeeping, payroll expertise, and audit compliance into a unified digital experience.
+                Founded with a mission to simplify corporate financial structures, Accbot has grown into a trusted partner for companies scaling in Sri Lanka and regionally. Developed as a dedicated client advisory platform, we fuse years of certified bookkeeping, payroll expertise, and audit compliance into a unified digital experience.
               </p>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 We believe accounting should not be a chore or a mystery. By providing transparent, real-time insights, we empower executives to make informed growth decisions. Whether you are a newly incorporated private limited company or an established enterprise preparing for annual tax returns, our certified professionals support you at every tier of your journey.

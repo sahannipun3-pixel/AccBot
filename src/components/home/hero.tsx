@@ -1,12 +1,42 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Play, CheckCircle } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, CheckCircle2, ShieldCheck, Award, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { slideUp } from "@/lib/utils";
+import { getCurrentUser } from "@/actions/auth";
 
 export function Hero() {
+  const [destination, setDestination] = useState("/signup");
+  const [ctaText, setCtaText] = useState("Get Started");
+
+  useEffect(() => {
+    async function resolveCta() {
+      try {
+        const user = await getCurrentUser();
+        if (user) {
+          if (user.role === "admin" || user.role === "super_admin") {
+            setDestination("/admin");
+            setCtaText("Go to Admin Console");
+          } else {
+            setDestination("/portal/dashboard");
+            setCtaText("Go to Client Portal");
+          }
+        } else {
+          setDestination("/signup");
+          setCtaText("Get Started");
+        }
+      } catch {
+        setDestination("/signup");
+        setCtaText("Get Started");
+      }
+    }
+    resolveCta();
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background text-foreground dark:bg-dark dark:text-white py-20">
       {/* Dynamic Background */}
@@ -67,15 +97,14 @@ export function Hero() {
             }}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
           >
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto group flex items-center justify-center gap-2">
-                <span>Book Free Consultation</span>
+            <Link href={destination} className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto group flex items-center justify-center gap-2 font-bold shadow-md shadow-gold/10">
+                <span>{ctaText}</span>
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link href="/services" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto group flex items-center justify-center gap-2">
-                <Play className="h-4 w-4 fill-current text-gold" />
+              <Button variant="outline" size="lg" className="w-full sm:w-auto group flex items-center justify-center gap-2 font-semibold">
                 <span>Explore Services</span>
               </Button>
             </Link>
@@ -92,90 +121,96 @@ export function Hero() {
             className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-12 pt-8 border-t border-border dark:border-silver/10 w-full"
           >
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-gold" />
+              <CheckCircle2 className="h-4 w-4 text-gold" />
               <span className="text-xs text-muted-foreground dark:text-silver/90 font-medium">CA Sri Lanka & IRD Compliant</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-gold" />
-              <span className="text-xs text-muted-foreground dark:text-silver/90 font-medium">Premium Client Advisory</span>
+              <CheckCircle2 className="h-4 w-4 text-gold" />
+              <span className="text-xs text-muted-foreground dark:text-silver/90 font-medium">Partner-Level Advisory</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-gold" />
-              <span className="text-xs text-muted-foreground dark:text-silver/90 font-medium">Zero Upfront Commitments</span>
+              <CheckCircle2 className="h-4 w-4 text-gold" />
+              <span className="text-xs text-muted-foreground dark:text-silver/90 font-medium">Verified Client Portal</span>
             </div>
           </motion.div>
         </div>
 
-        {/* Hero Right Visual Column */}
+        {/* Hero Right Visual Column — Authentic Corporate Advisory & Regulatory Trust */}
         <div className="lg:col-span-5 hidden lg:block relative">
           <motion.div
-            initial={{ opacity: 0, x: 50, scale: 0.95 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative w-full aspect-square max-w-md mx-auto"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative w-full max-w-md mx-auto"
           >
-            {/* Elegant visual elements representing balance, charts, structure */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-gold/10 via-card/90 to-surface rounded-3xl border border-border dark:border-gold/30 shadow-2xl overflow-hidden backdrop-blur-md">
-              <div className="absolute inset-0 bg-grid opacity-10" />
-              <div className="p-8 h-full flex flex-col justify-between">
-                <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <span className="text-xs font-bold text-gold tracking-widest uppercase">Enterprise Health</span>
-                    <h3 className="text-xl font-bold font-heading text-foreground">Financial Security</h3>
+            {/* Main Advisor Showcase Frame */}
+            <div className="relative rounded-3xl overflow-hidden border border-border dark:border-gold/30 shadow-2xl bg-card">
+              <div className="relative aspect-[4/3] w-full">
+                <Image
+                  src="/images/hero-advisory.jpg"
+                  alt="AccBot Senior Chartered Accountant reviewing audited financial statements with client in Colombo corporate boardroom"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 480px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                
+                {/* Top Floating Badge: Regulatory Authority */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                  <div className="inline-flex items-center gap-1.5 bg-background/90 dark:bg-dark/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-gold/30 shadow-md">
+                    <ShieldCheck className="h-4 w-4 text-gold" />
+                    <span className="text-[11px] font-bold text-foreground tracking-wide uppercase">
+                      CA Sri Lanka & IRD Compliant
+                    </span>
                   </div>
-                  <div className="h-8 w-8 rounded-lg bg-gold/10 border border-gold/30 flex items-center justify-center">
-                    <span className="text-xs text-gold font-bold">A+</span>
-                  </div>
-                </div>
-
-                {/* Simulated Chart/Visual */}
-                <div className="space-y-4 my-8">
-                  <div className="h-2 w-full bg-muted dark:bg-silver/10 rounded-full overflow-hidden">
-                    <motion.div 
-                       initial={{ width: 0 }} 
-                       animate={{ width: "85%" }} 
-                       transition={{ duration: 1.5, delay: 0.6 }} 
-                       className="h-full bg-gradient-to-r from-gold to-gold-light rounded-full" 
-                    />
-                  </div>
-                  <div className="h-2 w-full bg-muted dark:bg-silver/10 rounded-full overflow-hidden">
-                    <motion.div 
-                       initial={{ width: 0 }} 
-                       animate={{ width: "95%" }} 
-                       transition={{ duration: 1.5, delay: 0.8 }} 
-                       className="h-full bg-gradient-to-r from-gold to-gold-light rounded-full" 
-                    />
-                  </div>
-                  <div className="h-2 w-full bg-muted dark:bg-silver/10 rounded-full overflow-hidden">
-                    <motion.div 
-                       initial={{ width: 0 }} 
-                       animate={{ width: "70%" }} 
-                       transition={{ duration: 1.5, delay: 1.0 }} 
-                       className="h-full bg-gradient-to-r from-gold to-gold-light rounded-full" 
-                    />
+                  <div className="bg-gold text-dark font-black text-[10px] uppercase px-2.5 py-1 rounded-full shadow">
+                    Licensed
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-muted-foreground dark:text-silver/80 pt-4 border-t border-border dark:border-silver/10">
-                  <span>Accbot Ledger Analysis</span>
-                  <span className="text-gold font-semibold">Active Monitoring</span>
+                {/* Bottom Image Overlay Info */}
+                <div className="absolute bottom-4 left-4 right-4 text-white space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                    <span className="text-xs font-semibold text-silver/90 tracking-wide">Chartered Advisory Practice</span>
+                  </div>
+                  <p className="text-sm font-bold leading-snug">
+                    Partner-Led Tax Strategy, Corporate Audits & Advisory
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Credential Grid */}
+              <div className="p-4 bg-card/95 backdrop-blur-md grid grid-cols-3 gap-2.5 border-t border-border/80">
+                <div className="flex flex-col items-center text-center p-2 rounded-xl bg-muted/40 border border-border/40">
+                  <Award className="h-4 w-4 text-gold mb-1" />
+                  <span className="text-xs font-bold text-foreground">100%</span>
+                  <span className="text-[10px] text-muted-foreground">IRD Compliance</span>
+                </div>
+                <div className="flex flex-col items-center text-center p-2 rounded-xl bg-muted/40 border border-border/40">
+                  <Briefcase className="h-4 w-4 text-gold mb-1" />
+                  <span className="text-xs font-bold text-foreground">15+ Yrs</span>
+                  <span className="text-[10px] text-muted-foreground">Senior Advisory</span>
+                </div>
+                <div className="flex flex-col items-center text-center p-2 rounded-xl bg-muted/40 border border-border/40">
+                  <CheckCircle2 className="h-4 w-4 text-gold mb-1" />
+                  <span className="text-xs font-bold text-foreground">LKR 4B+</span>
+                  <span className="text-[10px] text-muted-foreground">Audited Assets</span>
                 </div>
               </div>
             </div>
-            {/* Overlay badges */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -top-6 -right-6 bg-card text-foreground p-4 rounded-xl border border-border shadow-xl flex items-center gap-3"
-            >
-              <div className="h-10 w-10 bg-gold/10 rounded-lg flex items-center justify-center text-gold">
-                <CheckCircle className="h-6 w-6" />
+
+            {/* Subtle Decorative Floating Badge */}
+            <div className="absolute -bottom-4 -left-4 bg-card/95 backdrop-blur-md text-foreground px-4 py-2.5 rounded-2xl border border-border dark:border-gold/30 shadow-xl flex items-center gap-3">
+              <div className="h-8 w-8 rounded-xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold">
+                <CheckCircle2 className="h-4 w-4" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-semibold">Audit Approval Rate</p>
-                <h4 className="text-sm font-bold">100% Guaranteed</h4>
+                <p className="text-[10px] text-muted-foreground font-medium">Client Satisfaction</p>
+                <h4 className="text-xs font-bold text-foreground">Verified Partnership</h4>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

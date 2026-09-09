@@ -145,12 +145,6 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-xs text-muted-foreground">
           <div className="flex flex-wrap items-center gap-4 justify-center sm:justify-start">
             <span>© {currentYear} AccBot Sri Lanka. All rights reserved.</span>
-            <span>
-              Developed by{" "}
-              <span className="text-gold font-medium">
-                Nexora Software Solutions
-              </span>
-            </span>
           </div>
           <div className="flex items-center gap-5">
             <Link href="/terms" className="hover:text-foreground transition-colors">

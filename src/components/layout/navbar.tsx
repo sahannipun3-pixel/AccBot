@@ -99,7 +99,7 @@ export function Navbar() {
         <Logo />
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1.5" aria-label="Main Navigation">
+        <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
           {NAV_LINKS.map((link) => {
             const isActive =
               pathname === link.href ||
@@ -109,15 +109,15 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-200",
+                  "relative px-3.5 py-2 text-sm transition-colors duration-200",
                   isActive
-                    ? "text-gold bg-gold/10 dark:bg-gold/15"
-                    : "text-foreground/80 hover:text-foreground hover:bg-muted/70"
+                    ? "text-gold font-bold"
+                    : "text-foreground/75 hover:text-foreground font-medium"
                 )}
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-1 left-4 right-4 h-[2px] bg-gold rounded-full" />
+                  <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-gold rounded-full transition-all duration-300" />
                 )}
               </Link>
             );
@@ -228,7 +228,7 @@ export function Navbar() {
                   Log In
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href="/signup">
                 <Button size="sm" className="font-bold shadow-xs">
                   Get Started
                 </Button>
@@ -270,7 +270,7 @@ export function Navbar() {
               </div>
 
               {/* Nav links */}
-              <nav className="flex flex-col gap-1.5 py-6">
+              <nav className="flex flex-col gap-1 py-6">
                 {NAV_LINKS.map((link) => {
                   const isActive =
                     pathname === link.href ||
@@ -280,10 +280,10 @@ export function Navbar() {
                       key={link.href}
                       href={link.href}
                       className={cn(
-                        "flex items-center px-4 py-3 rounded-xl text-sm font-semibold transition-colors",
+                        "flex items-center px-3.5 py-2.5 rounded-lg text-sm transition-colors border-l-2",
                         isActive
-                          ? "bg-gold/15 text-gold border-l-2 border-gold pl-3.5"
-                          : "text-foreground/80 hover:text-foreground hover:bg-muted"
+                          ? "text-gold border-gold font-bold bg-gold/5"
+                          : "text-foreground/75 hover:text-foreground border-transparent hover:bg-muted/50 font-medium"
                       )}
                     >
                       {link.label}
@@ -359,7 +359,7 @@ export function Navbar() {
                         Log In
                       </Button>
                     </Link>
-                    <Link href="/contact" className="w-full">
+                    <Link href="/signup" className="w-full">
                       <Button className="w-full font-bold">Get Started</Button>
                     </Link>
                   </>
