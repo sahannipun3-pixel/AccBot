@@ -26,7 +26,6 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const nextTarget = searchParams.get("next") || "/portal/dashboard";
 
   const {
     register,
@@ -83,7 +82,7 @@ function LoginForm() {
           </p>
         </CardHeader>
         <CardContent className="px-8 pb-8">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form noValidate onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-1.5 text-left">
               <Label htmlFor="email" className="text-xs font-semibold text-foreground">Email Address</Label>
               <div className="relative">

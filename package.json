@@ -9,7 +9,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "test": "playwright test",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1081.0",
@@ -38,11 +42,14 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^3.0.0",
+    "@types/dotenv": "^8.2.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "eslint-config-prettier": "^10.1.8",

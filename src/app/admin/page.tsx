@@ -28,10 +28,6 @@ import { getRecentActivity } from "@/actions/activity";
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
-  console.log("[ADMIN] Starting page load");
-  const tPageStart = Date.now();
-
-  const tFetchStart = Date.now();
   const [statsResult, recentMessages, recentActivity] = await Promise.all([
     sql<{
       total_users: string;
@@ -91,9 +87,6 @@ export default async function AdminDashboardPage() {
   const pendingExpenses = parseInt(stats?.pending_expenses ?? "0", 10);
   const totalAccounts = parseInt(stats?.total_accounts ?? "0", 10);
 
-  const totalTime = Date.now() - tPageStart;
-  console.log(`[ADMIN] Data fetch: ${Date.now() - tFetchStart} ms`);
-  console.log(`[ADMIN] Total: ${totalTime} ms`);
 
   const kpis = [
     {

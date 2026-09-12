@@ -43,6 +43,10 @@ export default function SignupPage() {
   });
 
   const onSubmit = async (data: SignupFormData) => {
+    if (!agreed) {
+      toast.error("Please agree to the Terms of Service and Privacy Policy.");
+      return;
+    }
     setIsSubmitting(true);
     try {
       const res = await signUpWithEmail(data);
@@ -77,7 +81,7 @@ export default function SignupPage() {
           </p>
         </CardHeader>
         <CardContent className="px-8 pb-8">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form noValidate onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-1.5 text-left">
               <Label htmlFor="name" className="text-xs font-semibold text-foreground">Full Name</Label>
               <div className="relative">
@@ -188,7 +192,7 @@ export default function SignupPage() {
 
             <Button
               type="submit"
-              disabled={isSubmitting || !agreed}
+              disabled={isSubmitting}
               size="lg"
               className="w-full flex items-center justify-center gap-2 shadow-md"
             >

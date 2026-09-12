@@ -280,7 +280,7 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                <form noValidate onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Name */}
                     <div className="space-y-1.5 text-left">

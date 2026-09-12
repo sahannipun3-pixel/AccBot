@@ -79,6 +79,10 @@ coverage/
 *.lcov
 .clinic/
 reports/
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
 
 # ── 7. TypeScript & Build Caches ─────────────────────────────────────────────
 *.tsbuildinfo

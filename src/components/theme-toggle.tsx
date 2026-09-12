@@ -17,11 +17,11 @@ interface ThemeToggleProps {
  */
 export function ThemeToggle({ className, variant = "default" }: ThemeToggleProps) {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = React.useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   if (!mounted) {
     return (

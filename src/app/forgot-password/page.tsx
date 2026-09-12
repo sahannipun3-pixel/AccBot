@@ -82,7 +82,7 @@ export default function ForgotPasswordPage() {
           </p>
         </CardHeader>
         <CardContent className="px-8 pb-8">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <form noValidate onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div className="space-y-1.5 text-left">
               <Label htmlFor="email" className="text-xs font-semibold text-foreground">Email Address</Label>
               <div className="relative">

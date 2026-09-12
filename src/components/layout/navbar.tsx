@@ -253,7 +253,7 @@ export function Navbar() {
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger
               render={
-                <Button variant="ghost" size="icon" className="h-9 w-9 text-foreground hover:bg-muted">
+                <Button variant="ghost" size="icon" aria-label="Toggle mobile menu" className="h-9 w-9 text-foreground hover:bg-muted">
                   {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </Button>
               }

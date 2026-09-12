@@ -10,7 +10,6 @@ import {
   Phone,
   Save,
   LogOut,
-  Wallet,
   Globe,
   ArrowRight,
   AlertCircle,
